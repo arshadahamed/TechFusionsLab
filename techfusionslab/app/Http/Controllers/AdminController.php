@@ -74,10 +74,41 @@ class AdminController extends Controller
     // End Method
 
     public function AdminProfile() {
-        return view('admin.admin_profile');
+        $id = Auth::user()->id;
+        $profileData = User::find($id);
+        return view('admin.admin_profile', compact('profileData'));
+    }
+    // End Method
+
+    public function ProfileStore(Request $request)
+    {
+        $id = Auth::user()->id;
+        $data = User::findOrFail($id);
+
+        $data->name = $request->name;
+        $data->email = $request->email;
+        $data->phone = $request->phone;
+        $data->address = $request->address;
+
+        // Handle profile photo
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $filename = time().'.'.$file->getClientOriginalExtension();
+            $file->move(public_path('upload/user_images'), $filename);
+
+            // Remove old photo if exists
+            if (!empty($data->photo) && file_exists(public_path('upload/user_images/'.$data->photo))) {
+                unlink(public_path('upload/user_images/'.$data->photo));
+            }
+
+            $data->photo = $filename;
+        }
+
+        $data->save();
+
+        return redirect()->route('dashboard')->with('success', 'Profile updated successfully.');
     }
 
-
-
+    // End Method
 
 }
