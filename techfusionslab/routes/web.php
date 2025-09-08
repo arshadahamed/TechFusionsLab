@@ -3,10 +3,15 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('home.index');
-});
+// Homepage
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/login', [HomeController::class, 'showLogin'])->name('login');
+
+
+
 
 Route::get('/dashboard', function () {
     return view('admin.index');

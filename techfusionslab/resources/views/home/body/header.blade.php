@@ -30,34 +30,10 @@
                                     <li>
                                         <a href="about.html">About Us</a>
                                     </li>
-                                    <li class="has-dropdown">
+                                    <li>
                                         <a href="news-details.html">
-                                            Pages
+                                            Team
                                         </a>
-                                        <ul class="submenu">
-                                            <li class="has-dropdown">
-                                                <a href="team-details.html">
-                                                    Team
-                                                    <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    <li><a href="team.html">Our Team</a></li>
-                                                    <li><a href="team-details.html">Team Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="project-details.html">
-                                                    Project
-                                                    <i class="fas fa-angle-right"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    <li><a href="project.html">Our Project</a></li>
-                                                    <li><a href="project-details.html">Project Details</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="pricing.html">Our Pricing</a></li>
-                                            <li><a href="404.html">404 Page</a></li>
-                                        </ul>
                                     </li>
                                     <li>
                                         <a href="service-details.html">
@@ -65,13 +41,19 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="news-details.html">
-                                            Blog
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a href="contact.html">Contact Us</a>
                                     </li>
+                                    @auth
+                                        <li>
+                                            <a href="{{route('dashboard')}}">Dashboard</a>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{route('login')}}">Login</a>
+                                        </li>
+                                    @endauth
+
+
                                 </ul>
                             </nav>
                         </div>
