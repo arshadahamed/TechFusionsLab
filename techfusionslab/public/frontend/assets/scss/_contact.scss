@@ -1,0 +1,141 @@
+.gt-contact-us-wrapper {
+
+    .gt-contact-us-box {
+        @include flex;
+        gap: 24px;
+        background: $gt-bg-color;
+        padding: 25px;
+        margin-bottom: 20px;
+        max-width: 420px;
+        @include transition;
+
+        @include breakpoint (max-xl) {
+            display: grid;
+        }
+
+         @include breakpoint (max-lg) {
+            max-width: initial;
+             @include flex;
+        }
+
+        @include breakpoint (max-md) {
+           display: grid;
+        }
+
+        .gt-icon {
+            width: 64px;
+            height: 64px;
+            line-height: 64px;
+            text-align: center;
+            background-color: $gt-theme-color-2;
+            font-size: 30px;
+            color: $gt-header-color;
+            @include transition;
+
+            i {
+                @include transition;
+                display: inline-block;
+            }
+        }
+
+        .gt-contact-us-content {
+            span {
+                color: $gt-header-color;
+                margin-bottom: 5px;
+            }
+
+            h5 {
+                br {
+
+                    @include breakpoint (max-xl) {
+                        display: none;
+                    }
+
+                    @include breakpoint (max-lg) {
+                        display: initial;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            .gt-icon {
+                background-color: $gt-theme-color;
+                color: $gt-white;
+
+                i {
+                    transform: scaleX(-1) !important;
+                     filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+    .gt-comment-form-wrap {
+        padding: 40px;
+        background: $gt-bg-color;
+
+        @include breakpoint (max-sm) {
+            padding: 30px;
+        }
+
+        h3 {
+           font-size: 40px;
+           margin-bottom: 10px;
+
+           @include breakpoint (max-sm) {
+               font-size: 28px;
+           }
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .form-clt {
+            span {
+                color: $gt-header-color;
+                display: inline-block;
+                margin-bottom: 10px;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            input,textarea {
+                width: 100%;
+                outline: none;
+                border: none;
+                border-radius: 8px;
+                background: $gt-bg-color;
+                border: 1px solid rgba(202, 210, 210, 0.24);
+                padding: 12px 20px;
+                font-weight: 400;
+                font-size: 16px;
+                color: $gt-header-color;
+
+                &::placeholder {
+                    color: $gt-header-color;
+                }
+            }
+
+            textarea {
+                padding-bottom: 80px;
+                resize: none;
+            }
+        } 
+    }
+}
+
+ .gt-map-items {
+    
+    .googpemap {
+
+        iframe {
+            width: 100%;
+            height: 478px;
+
+            @include breakpoint (max-sm){
+                height: 300px;
+            }
+        }
+    }
+}

@@ -1,0 +1,418 @@
+.gt-project-card-item-2 {
+    margin-top: 30px;
+
+    .gt-project-image {
+        position: relative;
+        overflow: hidden;
+
+        img {
+            @include imgw;
+            transform: scale(1.02);
+            transition: all 1.5s ease-out;
+        }
+
+        &::before{
+            position: absolute;
+            z-index: 1;
+            display: block;
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255,255,255,.3);
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            margin: auto;
+        }
+
+        .gt-project-content {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            @include flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            background-color: $gt-white;
+            opacity: 0;
+            visibility: hidden;
+            @include transition;
+            z-index: 999;
+
+            .content {
+                span {
+                    color: $gt-theme-color;
+                    position: relative;
+                    display: inline-block;
+                    margin-left: 35px;
+
+                    &::before {
+                        @include before;
+                        background-color: $gt-theme-color;
+                        width: 24px;
+                        height: 2px;
+                        left: -35px;
+                        top: 13px;
+                    }
+                }
+
+               h4 {
+                 margin-top: 5px;
+
+                  a {
+                        background-position: 0 95%;
+                        background-repeat: no-repeat;
+                        background-size: 0% 2px;
+                        display: inline;
+                        
+                        &:hover {
+                            color: $gt-theme-color;
+                            background-size: 100% 2px;
+                            background-image: linear-gradient(180deg, $gt-theme-color 0%, $gt-theme-color 100%);
+                        }
+                    }
+               }
+            }
+
+            .gt-arrow {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                position: relative;
+                min-width: auto;
+                text-transform: capitalize;
+                overflow: hidden;
+                @include transition;
+                font-family: "Lato", sans-serif;
+                font-weight: 600;
+                color: $gt-white;
+                width: 56px;
+                height: 56px;
+                line-height: 56px;
+                text-align: center;
+                background-color: $gt-theme-color;
+
+                span {
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    transition: opacity .35s ease, transform .35s ease;
+
+                    i {
+                        transition: transform 0.35s ease;
+                        transform: rotate(-45deg);
+                    }
+                }
+
+                span:last-child {
+                    position: absolute;
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+
+                &:hover {
+                    background-color: $gt-header-color;
+                    
+                    span:first-child,
+                    .btn:focus span:first-child {
+                        opacity: 0;
+                        transform: translateY(-50px);
+                    }
+
+                    span:last-child,
+                    .btn:hover span:last-child,
+                    .btn:focus span:last-child {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+
+                    i {
+                        transform: rotate(0);
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .gt-project-image {
+
+             &::before {
+                animation: circle 1.5s ease-out forwards;
+            }
+
+             img {
+                -webkit-transform: scale3d(1.1, 1.1, 1);
+                transform: scale3d(1.1, 1.1, 1);
+            }
+
+            .gt-project-content {
+                opacity: 1;
+                visibility: visible;
+                bottom: 0;
+            }
+        }
+    }
+}
+
+.gt-project-section-2 {
+    .container-fluid {
+        padding: 0 32px;
+
+        @include breakpoint (max-sm) {
+            padding: 0 15px;
+        }
+    }
+}
+
+
+.gt-project-card-items-3 {
+    margin-top: 30px;
+
+    .gt-project-image {
+        position: relative;
+        overflow: hidden;
+        height: 426px;
+
+        &::before {
+           @include before;
+           background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, (#063232) 84.04%);
+           opacity: 0;
+           visibility: hidden;
+           @include transition;
+        }
+
+        img {
+            @include imgw;
+            object-fit: cover;
+        }
+
+        .gt-project-content {
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            bottom: -24px;
+            @include flex;
+            justify-content: space-between;
+            @include transition;
+            opacity: 0;
+            visibility: hidden;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .content {
+            
+                span {
+                    color: $gt-theme-color;
+                    position: relative;
+                    display: inline-block;
+                    margin-left: 35px;
+
+                    &::before {
+                        @include before;
+                        background-color: $gt-theme-color;
+                        width: 24px;
+                        height: 2px;
+                        left: -35px;
+                        top: 13px;
+                    }
+                }
+
+               h4 {
+                 margin-top: 5px;
+
+                  a {
+                        background-position: 0 95%;
+                        background-repeat: no-repeat;
+                        background-size: 0% 2px;
+                        display: inline;
+                        color: $gt-white;
+                        
+                        &:hover {
+                            color: $gt-theme-color;
+                            background-size: 100% 2px;
+                            background-image: linear-gradient(180deg, $gt-theme-color 0%, $gt-theme-color 100%);
+                        }
+                    }
+               }
+            }
+
+            .gt-arrow {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 16px;
+                position: relative;
+                min-width: auto;
+                text-transform: capitalize;
+                overflow: hidden;
+                @include transition;
+                font-family: "Lato", sans-serif;
+                font-weight: 600;
+                color: $gt-white;
+                width: 56px;
+                height: 56px;
+                line-height: 56px;
+                text-align: center;
+                background-color: $gt-theme-color;
+
+                span {
+                    font-size: 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    transition: opacity .35s ease, transform .35s ease;
+
+                    i {
+                        transition: transform 0.35s ease;
+                        transform: rotate(-45deg);
+                    }
+                }
+
+                span:last-child {
+                    position: absolute;
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+
+                &:hover {
+
+                    span:first-child,
+                    .btn:focus span:first-child {
+                        opacity: 0;
+                        transform: translateY(-50px);
+                    }
+
+                    span:last-child,
+                    .btn:hover span:last-child,
+                    .btn:focus span:last-child {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+
+                    i {
+                        transform: rotate(0);
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .gt-project-image {
+            &::before {
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .gt-project-content {
+                opacity: 1;
+                visibility: visible;
+                bottom: 24px;
+                
+                .content {
+                   span {
+                      position: relative;
+                      z-index: 999;
+                   }
+
+                   h4 {
+                      position: relative;
+                      z-index: 999;
+                   }
+                }
+
+                .gt-arrow {
+                     position: relative;
+                      z-index: 999;
+                }
+            }
+        }
+    }
+}
+
+.gt-project-section-3 {
+
+    .container-fluid {
+        padding: 0 56px;
+
+         @include breakpoint (max-xl) {
+            padding: 0 30;
+        }
+
+        @include breakpoint (max-md) {
+            padding: 0 15px;
+        }
+    }
+}
+
+
+.gt-project-details-wrapper {
+
+    .gt-project-details-image {
+        margin-bottom: 30px;
+
+        img {
+            @include imgw;
+        }
+    }
+
+    .gt-project-details-content {
+        h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+
+            @include breakpoint (max-xl) {
+                font-size: 28px;
+            }
+        }
+
+        .gt-thumb {
+            img {
+                @include imgw;
+            }
+        }
+    }
+
+    .gt-project-information {
+        background-color: $gt-bg-color;
+        padding: 30px;
+
+        .gt-information-list {
+            margin-top: 20px;
+
+            li {
+                color: $gt-text-color;
+                @include flex;
+                gap: 16px;
+                font-size: 16px;
+
+                 @include breakpoint (max-xl) {
+                    gap: 14px;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 15px;
+                    border-bottom: 1px solid $gt-border-color;
+                    padding-bottom: 15px;
+                }
+
+                span {
+                    color: $gt-header-color;
+                    font-size: 18px;
+
+                    @include breakpoint (max-xl) {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

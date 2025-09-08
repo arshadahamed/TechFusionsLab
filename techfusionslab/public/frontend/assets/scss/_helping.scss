@@ -1,0 +1,417 @@
+
+//page scroll bar add
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	box-shadow: inset 0 0 5px $gt-bg-color; 
+	border-radius: 5px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: $gt-theme-color;
+	border-radius: 10px;
+}
+//page scroll bar add
+
+//Basic Code Start
+.fix {
+  overflow: hidden;
+}
+
+.ralt{
+ position: relative;
+}
+
+//Basic Code End
+
+//Video Css Start
+.ripple {
+  position: relative;
+
+  &::before,&::after {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 30px;
+      height: 30px;
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0 rgba(21, 57, 238, .6);
+      -webkit-animation: rippleOne 3s infinite;
+      animation: rippleOne 3s infinite;
+  }
+
+  &::before {
+      -webkit-animation-delay: 0.9s;
+      animation-delay: 0.9s;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  }
+
+  &::after {
+      -webkit-animation-delay: 0.6s;
+      animation-delay: 0.6s;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+  }
+}
+//Video Css End
+
+.array-buttons {
+  @include flex;
+  gap: 20px;
+
+  @include breakpoint (max-xl) {
+    flex-wrap: wrap;
+  }
+
+  .array-prev {
+     width: 110px;
+     height: 48px;
+     line-height: 45px;
+     text-align: center;
+     background-color: transparent;
+     color: $gt-header-color;
+     @include transition;
+     border-radius: 100px;
+     border: 1px solid $gt-header-color;
+     font-weight: 600;
+
+     i {
+       margin-left: 5px;
+       transform: rotate(45deg);
+     }
+
+    &:hover {
+       background: $gt-theme-color-2;
+       color: $gt-header-color;
+       border: 1px solid $gt-theme-color-2;
+    }
+  }
+  
+  .array-next {
+     width: 110px;
+     height: 48px;
+     line-height: 45px;
+     text-align: center;
+     background-color: $gt-theme-color-2;
+     color: $gt-header-color;
+     @include transition;
+     border-radius: 100px;
+     font-weight: 600;
+     text-transform: uppercase;
+
+     
+     i {
+       margin-left: 5px;
+       transform: rotate(-45deg);
+     }
+   
+      &:hover {
+         background: $gt-header-color;
+         color: $gt-white;
+      }
+   }
+}
+
+.array-buttons-2 {
+  @include flex;
+  gap: 20px;
+
+  @include breakpoint (max-xl) {
+    flex-wrap: wrap;
+  }
+
+  .array-prev {
+     width: 42px;
+     height: 42px;
+     line-height: 42px;
+     text-align: center;
+     background-color: $gt-header-color;
+     color: #00E5FF;
+     @include transition;
+     border-radius: 100%;
+
+    &:hover {
+       background: $gt-theme-color;
+       color: $gt-white;
+    }
+  }
+  
+  .array-next {
+      width: 42px;
+      height: 42px;
+      line-height: 42px;
+      border-radius: 100%;
+      text-align: center;
+      background: #2ADDC8;
+      color: $gt-header-color;
+      @include transition;
+  
+      &:hover {
+         background: $gt-theme-color;
+         color: $gt-white;
+      }
+   }
+}
+
+.array-buttons-4 {
+  @include flex;
+  gap: 20px;
+
+  @include breakpoint (max-xl) {
+    flex-wrap: wrap;
+  }
+
+  .array-prev {
+     width: 45px;
+     height: 45px;
+     line-height: 45px;
+     text-align: center;
+     background: $gt-bg-color;
+     color: $gt-white;
+     @include transition;
+     border-radius: 100%;
+
+  }
+  
+  .array-next {
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      border: 1px solid rgba(65, 65, 65, 1);
+      border-radius: 100%;
+      text-align: center;
+      background: transparent;
+      color: $gt-white;
+      @include transition;
+  
+      &:hover {
+         background: $gt-bg-color;
+         border: 1px none;
+         color: $gt-white;
+      }
+   }
+}
+//pagination default
+
+//pagination default
+
+.swiper-dot {
+  text-align: center;
+
+  .swiper-pagination-bullet {
+      width: 5px;
+      height: 5px;
+      transition: 0.6s;
+      background-color: $gt-white;
+      
+      border-radius: 0;
+      opacity: 1;
+      position: relative;
+      &:not(:last-child){
+        margin-right: 15px;
+      }
+  }
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+      background-color: $gt-theme-color;
+      border: 1px solid $gt-theme-color;
+      transition: 0.6s;
+      position: relative;
+      width: 5px;
+      height: 5px;
+      border-radius: 0;
+
+      &::before {
+        @include before;
+        border: 1px solid $gt-theme-color;
+        width: 20px;
+        height: 20px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+  }
+
+}
+
+.swiper-dot-2 {
+  text-align: center;
+
+  .swiper-pagination-bullet {
+      width: 5px;
+      height: 5px;
+      transition: 0.6s;
+      background-color: $gt-white;
+      border-radius: 30px;
+      opacity: 1;
+      position: relative;
+      &:not(:last-child){
+        margin-bottom: 30px;
+      }
+  }
+  .swiper-pagination-bullet.swiper-pagination-bullet-active {
+      background-color: $gt-theme-color;
+      border: 1px solid $gt-theme-color;
+      transition: 0.6s;
+      position: relative;
+      width: 5px;
+      height: 5px;
+      border-radius: 30px;
+
+      &::before {
+        @include before;
+        border: 1px solid $gt-theme-color;
+        width: 20px;
+        height: 20px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        border-radius: 50%;
+      }
+  }
+
+}
+.bg-cover {
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  background-position: center;
+}
+
+.slide-transtion {
+	-webkit-transition-timing-function: linear;
+	transition-timing-function: linear;
+}
+.brand-slide-element {
+	width: auto;
+	display: inline-block;
+}
+
+
+.footer-bg {
+  background-color: $gt-header-color;
+}
+
+.page-nav-wrap {
+  margin-top: 60px;
+
+  @include breakpoint (max-xl) {
+    margin-top: 30px;
+  }
+
+  ul {
+      li {
+          display: inline-block;
+
+          .page-numbers {
+              &.current {
+                  background: linear-gradient(180deg, #1539EE 0%, #2ADDC8 100%);
+                  color: $gt-white;
+                  border-radius: 10px;
+              }
+
+              display: inline-block;
+              width: 56px;
+              height: 56px;
+              line-height: 56px;
+              text-align: center;
+              background-color: $gt-bg-color;
+               border: 1px solid $gt-bg-color;
+              color: $gt-header-color;
+              @include transition;
+              border-radius: 100px;
+              font-weight: 600;
+              transition: all 0.3s ease-in-out;
+              margin: 0 2px;
+
+              &.style-2 {
+                display: inline-block;
+                width: 110px;
+                height: 48px;
+                line-height: 45px;
+                text-align: center;
+                background-color: transparent;
+                color: $gt-header-color;
+                @include transition;
+                border-radius: 100px;
+                border: 1px solid $gt-header-color;
+                font-weight: 600;
+                transition: all 0.3s ease-in-out;
+               
+              }
+
+              @media (max-width: 767px) {
+                  margin-top: 10px;
+                  width: 40px;
+                  height: 40px;
+                  line-height: 40px;
+                  font-size: 14px;
+              }
+
+              i {
+                  margin-top: 2px;
+                  color: $gt-theme-color;
+                  @include transition;
+                  margin-left: 10px;
+              }
+
+              &:hover {
+                  background: $gt-theme-color;
+                  color: $gt-white;
+                  border: 1px solid $gt-theme-color;
+
+                  i {
+                    color: $gt-white;
+                  }
+              }
+          }
+      }
+  }
+}
+
+
+.swiper-number4 {
+  text-align: center;
+
+  .swiper-number-bullet {
+      // width: 10px;
+      // height: 10px;
+      transition: 0.6s;
+      // background-color: $gt-white;
+      opacity: 1;
+      border: 1px transparent;
+      // border-radius: 100%;
+      position: relative;
+      color: $gt-white;
+  }
+
+  .swiper-number-bullet.swiper-number-bullet-active {
+      background-color: $gt-theme-color;
+      transition: 0.6s;
+      position: relative;
+      width: 35px;
+      border-radius: 30px;
+  }
+
+}
+
+
+.sticky-style {
+  position: sticky !important;
+  top: 100px;
+}
+
+
+.custom-container {
+  max-width: 1700px;
+  margin: 0 auto;
+}

@@ -1,0 +1,83 @@
+.scrolling-wrap {
+	overflow: hidden;
+	white-space: nowrap;
+	display: flex;
+	gap: 30px;
+
+    &.style-1 {
+
+        .comm {
+            .cmn-textslide {
+                -webkit-text-stroke-width: 1px;
+                -webkit-text-stroke-color: $gt-white;
+                color: transparent;
+
+                 &:hover {
+                    color: $gt-white;
+                    -webkit-text-stroke-color: $gt-white;
+                    opacity: initial;
+                }
+            }
+        }
+    }
+
+    &.style-2 {
+        margin-top: 30px;
+        
+        .comm {
+              animation: scroll-left-to-right-loop 50s linear infinite;
+        }
+    }
+
+	.comm {
+		display: flex;
+		align-items: center;
+		animation: scroll 50s linear infinite;
+		gap: 30px;
+		
+		.cmn-textslide {
+			font-size: 100px;
+			font-weight: 800;
+			line-height: 108px;
+            letter-spacing: -1.24px;
+            font-family: $gt-heading-font;
+            @include flex;
+            gap: 30px;
+            -webkit-text-stroke-width: 1px;
+			-webkit-text-stroke-color: rgba(202, 210, 210, 0.48);
+			color: transparent;
+			@include transition;
+
+            &:hover {
+               color: $gt-header-color;
+             -webkit-text-stroke-color: $gt-header-color;
+             opacity: initial;
+		  }
+		}
+	}
+
+	&:hover {
+		.comm {
+			animation-play-state: paused;
+		}
+	}
+
+	@include breakpoint (max-xxl) {
+		.comm {
+			gap: 20px;
+		}
+	}
+
+	@include breakpoint (max-lg) {
+		gap: 14px;
+		.comm {
+			gap: 14px;
+		}
+	}
+
+	@include breakpoint (max-sm) {
+		.comm {
+			gap: 12px;
+		}
+	}
+}

@@ -1,0 +1,834 @@
+
+
+.gt-choose-us-wrapper-2 {
+    position: relative;
+
+    &::before {
+        @include before;
+        height: 560px;
+        background-color: rgba(202, 210, 210, 0.24);
+        left: 47%;
+        top: 5%;
+        width: 1px;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-choose-us-left-item {
+        position: relative;
+
+        .gt-why-choose-us-image {
+            position: relative;
+            max-width: 500px;
+            overflow: hidden;
+
+            &::after {
+                content: "";
+                position: absolute;
+                width: 200%;
+                height: 0%;
+                left: 50%;
+                top: 50%;
+                background-color: rgba(255,255,255,.3);
+                transform: translate(-50%,-50%) rotate(-45deg);
+                z-index: 1;
+            }
+
+            @include breakpoint (max-xl) {
+               max-width: initial;
+            }
+
+            img {
+                @include imgw;
+            }
+
+            h2 {
+                color: $gt-white;
+                position: absolute;
+                top: 25%;
+                right: -29%;
+                transform: rotate(-90deg);
+
+                @include breakpoint (max-xl) {
+					right: -26%;
+                    top: 23%;
+				}
+
+                 @include breakpoint (max-lg) {
+					right: -14%;
+                    top: 15%;
+				}
+
+                @include breakpoint (max-sm) {
+					right: -21%;
+                    top: 18%;
+				}
+
+                span {
+                    color: $gt-theme-color-2;
+                }
+            }
+
+            &:hover {
+                &::after {
+                    height: 250%;
+                    transition: all 600ms linear;
+                    background-color: transparent;
+                }
+            }
+        }
+
+        .content {
+            display: grid;
+            right: -15%;
+            top: 10%;
+            position: absolute;
+            gap: 264px;
+
+             @include breakpoint (max-xxl) {
+                display: none;
+            }
+
+            .gt-link-btn {
+                color: $gt-theme-color-2;
+                transform: rotate(-90deg);
+                margin-left: 20px;
+                
+                span {
+                  border-bottom: 1px solid $gt-theme-color-2;
+                }
+            }
+
+            p {
+                max-width: 380px;
+                transform: rotate(-90deg);
+                color: $gt-white;
+                opacity: 0.7;
+            }
+        }
+    }
+
+    .gt-why-choose-us-content {
+       
+        .gt-text {
+            margin-top: 20px;
+            color: $gt-white;
+            opacity: 0.7;
+            margin-bottom: 30px;
+        }
+
+        .gt-list {
+            margin-bottom: 24px;
+
+            .list {
+                margin-bottom: 10px;
+
+                li {
+                    font-size: 20px;
+                    font-weight: 600;
+                    color: $gt-white;
+
+                    i {
+                        color: $gt-theme-color-2;
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            p {
+                color: $gt-white;
+                opacity: 0.7;
+            }
+        }
+
+        .gt-theme-btn {
+            margin-top: 24px;
+
+            @include breakpoint (max-xl) {
+              margin-top: 6px;
+            }
+
+            &:hover {
+                background-color: $gt-white;
+                color: $gt-header-color;
+            }
+        }
+    }
+}
+
+.gt-why-choose-us-section-2 {
+    position: relative;
+    z-index: 9;
+
+    .gt-left-shape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-right-shape {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translateX(100%);
+        animation: slideInRight 1.7s ease-out forwards;
+
+        @include breakpoint (max-xxl) {
+            display: none;
+        }
+    }
+}
+
+.gt-feature-wrapper-3 {
+
+    .gt-feature-image {
+        position: relative;
+        max-width: 586px;
+        height: auto;
+        display: block;
+        transition: transform 0.4s ease;
+        transform-style: preserve-3d;
+
+        @include breakpoint (max-xl) {
+            max-width: initial;
+        }
+
+        img {
+            @include imgw;
+           
+        }
+
+        .radius-box-2 {
+            background-color: $gt-theme-color;
+            width: 260px;
+            height: 185px;
+            border-radius: 91.489px 0px 0px 91.489px;
+            position: absolute;
+            right: -25px;
+            bottom: 37px;
+            transform: rotate(-90deg);
+
+            @include breakpoint (max-lg){
+               display: none;
+            }
+
+            .circle-image {
+                width: 164px;
+                height: 164px;
+                line-height: 164px;
+                border-radius: 100px;
+                background-color: $gt-white;
+                margin-top: 10px;
+                margin-left: 10px;
+                text-align: center;
+                position: relative;
+
+                .star {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    background-color: #FFEDE6;
+                    width: 100px;
+                    height: 100px;
+                    line-height: 100px;
+                    text-align: center;
+                    border-radius: 100px;
+                    color: $gt-theme-color;
+                    font-size: 30px;
+                }
+
+                img {
+                    animation: cir36 10s linear infinite;
+                    width: initial;
+                    height: initial;
+                }
+            }
+        }
+    }
+
+    .gt-feature-content {
+
+        .gt-text {
+            margin-top: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 551px;
+        }
+
+        .gt-progress-wrap {
+            margin-top: 32px;
+            width: 100%;
+            margin-bottom: 48px;
+
+            @include breakpoint (max-xl) {
+                margin-bottom: 40px;
+            }
+
+            .pro-items {
+                width: 100%;
+        
+                &:not(:last-child){
+                    margin-bottom: 25px;
+                }
+                .pro-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+
+                    .title {
+                        font-weight: 600;
+                        color: $gt-white;
+                    }
+                    
+                    .point {
+                        font-size: 20px;
+                        font-weight: 600;
+                        color: $gt-white;
+                    }
+                }
+        
+                .progress {
+                    border: 1px solid $gt-theme-color-2;
+                    justify-content: flex-start;
+                    align-items: center;
+                    position: relative;
+                    display: flex;
+                    height: 14px;
+                    width: 100%;
+                    background-color: transparent;
+                    padding: 0 2px;
+                }
+                
+                .progress-value {
+                    animation: load 3s normal forwards;
+                    border-radius: 0;
+                    border-radius: 16px;
+                    background: $gt-theme-color-2;
+                    height: 8px;
+                    width: 0;
+                }
+        
+                .style-two{
+                    animation: load2 3s normal forwards;
+                }
+        
+                .style-three{
+                    animation: load3 3s normal forwards;
+                }
+        
+                @keyframes load {
+                    0% { width: 0; }
+                    100% { width: 90%; }
+                }
+                @keyframes load2 {
+                    0% { width: 0; }
+                    100% { width: 70%; }
+                }
+                @keyframes load3 {
+                    0% { width: 0; }
+                    100% { width: 55%; }
+                }
+            }
+        }
+
+        .gt-theme-btn {
+            &:hover {
+                background-color: $gt-white;
+
+                span {
+                    color: $gt-header-color;
+                }
+            }
+        }
+    }
+
+    &:hover {
+        .gt-feature-image {
+             transform: rotateX(7deg) rotateY(7deg);
+        }
+    }
+}
+
+.gt-feature-section-3 {
+    position: relative;
+
+    .gt-right-shape {
+        position: absolute;
+        right: 0;
+        top: 0;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-bottom-shape {
+        position: absolute;
+        right: 92px;
+        bottom: 88px;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-top-shape {
+        position: absolute;
+        top: 130px;
+        left: 40%;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-circle-shape {
+        position: absolute;
+        top: 27%;
+        left: 5%;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+     .gt-red-shape {
+        position: absolute;
+        top: 140px;
+        left: 16%;
+
+         @include breakpoint (max-xxxl) {
+            top: 100px;
+            left: 10%;
+        }
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}
+
+.gt-our-process-wrapper {
+     position: relative;
+     z-index: 9;
+
+     .gt-line-shape {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 936px;
+        z-index: -1;
+
+        img {
+            @include imgw;
+        }
+
+        @include breakpoint (max-xxl){
+            display: none;
+        }
+    }
+
+    .gt-our-process-item {
+        text-align: center;
+        margin-top: 30px;
+
+        span {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        h3 {
+            margin-top: 30px;
+            margin-bottom: 10px;
+
+            @include breakpoint (max-xxl) {
+                font-size: 20px;
+            }
+        }
+
+        p {
+            max-width: 306px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .gt-icon {
+            width: 72px;
+            height: 72px;
+            line-height: 72px;
+            text-align: center;
+            border-radius: 100px;
+            background-color: $gt-white;
+            margin: 0 auto;
+            position: relative;
+            @include transition;
+            margin-top: 30px;
+
+            &::before {
+                @include before;
+                width: 88px;
+                height: 88px;
+                border: 2px dashed $gt-border-color;
+                text-align: center;
+                border-radius: 100px;
+                transform: translate(-50%, -50%);
+                top: 50%;
+                left: 50%;
+                 @include transition;
+                 animation: rotateBorder 7s linear infinite;
+                 z-index: 1;
+            }
+        }
+
+        &.style-2 {
+           h3 {
+              margin-top: 40px;
+           }
+
+            p {
+                margin-bottom: 24px;
+            }
+        }
+
+        &:hover {
+            .gt-icon {
+                background-color: $gt-theme-color;
+
+                &::before {
+                    border: 2px dashed $gt-theme-color;
+                }
+
+                img {
+                     filter: brightness(0) invert(1);
+                }
+            }
+        }
+    }
+} 
+
+
+.gt-why-choose-us-wrapper {
+
+    .gt-why-choose-us-image {
+        img {
+            @include imgw;
+        }
+    }
+
+    .gt-why-choose-us-content {
+        .gt-text {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .gt-why-choose-us-item {
+            margin-top: 30px;
+            @include flex;
+            gap: 110px;
+
+             @include breakpoint (max-xxl) {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+
+            .gt-chosse-us-icon-item {
+
+                .gt-chosse-us-icon {
+                    @include flex;
+                    gap: 16px;
+                    margin-bottom: 24px;
+
+                    .icon {
+                        width: 56px;
+                        height: 56px;
+                        line-height: 56px;
+                        background-color: $gt-theme-color-2;
+                        border-radius: 100px;
+                        text-align: center;
+                        @include transition;
+
+                         img {
+                            @include transition;
+                            display: inline-block;
+                        }
+                    }
+
+                    .content {
+                        h4 {
+                            font-weight: 600;
+                            color: $gt-white;
+                        }
+                    }
+
+                     &:hover {
+                        .icon {
+                                background-color: $gt-theme-color;
+
+                                img {
+                                transform: scaleX(-1) !important;
+                                filter: brightness(0) invert(1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gt-arrow {
+                border-left: 4px solid $gt-border-color;
+                padding-left: 60px;
+
+                 @include breakpoint (max-xl) {
+                     border-left: none;
+                     padding-left: 0;
+                }
+            }
+        }
+
+        .gt-choose-us-button {
+            @include flex;
+            gap: 80px;
+            margin-top: 48px;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                gap: 24px;
+                margin-top: 30px;
+            }
+
+            .gt-count-item {
+                @include flex;
+                gap: 10px;
+
+                h2 {
+                    color: $gt-white;
+                    font-size: 56px;
+                }
+
+                p {
+                    color: rgba(255, 255, 255, 0.8);
+                }
+            }
+        }
+    }
+}
+
+.gt-video-wrapper {
+    position: relative;
+    z-index: 9;
+
+    .gt-text {
+        font-size: 180px;
+         color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: rgba(202, 210, 210, 0.3);
+        background: transparent;
+        animation: strokeColorChange1 4s linear infinite;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        top: -20%;
+        z-index: -1;
+
+        @include breakpoint (max-xxxl) {
+            top: -20%;
+        }
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .gt-video-content {
+        position: relative;
+        border-left: 4px solid $gt-theme-color-2;
+        padding-left: 48px;
+
+        @include breakpoint (max-xl) {
+            padding-left: 0;
+            border-left: none;
+        }
+
+        .gt-arrow {
+            position: absolute;
+            top: -15px;
+            right: 94px;
+
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+
+        .gt-top-content {
+            @include flex;
+            gap: 24px;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+            }
+
+            h2 {
+                color: $gt-white;
+                font-size: 100px;
+                font-weight: 800;
+
+                @include breakpoint (max-xxl) {
+                    font-size: 80px;
+                }
+
+                @include breakpoint (max-xl) {
+                    font-size: 100px;
+                }
+
+
+                @include breakpoint (max-lg) {
+                    font-size: 50px;
+                }
+
+                @include breakpoint (max-md) {
+                    font-size: 30px;
+                }
+            }
+
+             .circle-image {
+                position: relative;
+
+                @include breakpoint (max-sm) {
+                    display: none;
+                }
+
+                .video-btn {
+                    text-align: center;
+                    color: $gt-white;
+                    display: inline-block;
+                    text-align: center;
+                    font-size: 24px;
+                    z-index: 999;
+                    position: absolute;
+                    z-index: 99;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                    width: 72px;
+                    height: 72px;
+                    line-height: 72px;
+                    background-color: $gt-theme-color;
+                    border-radius: 100%;
+
+                    @include breakpoint (max-xxxl) {
+                        width: 80px;
+                        height: 80px;
+                        line-height: 80px;
+                }
+
+                }
+
+                img {
+                    animation: cir36 10s linear infinite;
+                }
+            }
+        }
+
+        .gt-bottom-content {
+            @include flex;
+            gap: 16px;
+            margin-top: 10px;
+
+            @include breakpoint (max-xl) {
+               flex-wrap: wrap;
+            }
+
+            h4 {
+                color: rgba(255, 255, 255, 0.88);
+            }
+
+            h2 {
+                font-size: 100px;
+                color: $gt-white;
+
+                @include breakpoint (max-xxl) {
+                    font-size: 80px;
+                }
+
+                @include breakpoint (max-xl) {
+                    font-size: 100px;
+                }
+
+                @include breakpoint (max-lg) {
+                    font-size: 50px;
+                }
+
+                @include breakpoint (max-md) {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .gt-video-image {
+        overflow: hidden;
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 0%;
+            left: 50%;
+            top: 50%;
+            background-color: rgba(255,255,255,.3);
+            transform: translate(-50%,-50%) rotate(-45deg);
+            z-index: 1;
+        }
+
+        img {
+            @include imgw;
+        }
+
+        &:hover {
+            &::after {
+                height: 250%;
+                transition: all 600ms linear;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+.gt-video-section {
+    position: relative;
+    z-index: 9;
+
+    .star {
+        position: absolute;
+        bottom: 64px;
+        left: 28%;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+    .right-shape {
+        position: absolute;
+        right: 0%;
+        top: -47%;
+        z-index: -1;
+
+        @include breakpoint (max-xxxl) {
+           right: -20%;
+        }
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}

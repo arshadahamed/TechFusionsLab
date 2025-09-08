@@ -1,0 +1,123 @@
+.gt-faq-wrapper {
+
+    .gt-faq-content {
+
+        .gt-text {
+            max-width: 489px;
+            margin-top: 24px;
+        }
+
+        .client-info-item {
+            @include flex;
+            gap: 16px;
+            margin-top: 48px;
+
+            @include breakpoint (max-xl) {
+                margin-top: 30px;
+            }
+           
+            .info-item {
+                @include flex;
+
+                .client-image {
+                    img {
+                        border: 1px solid #FBFFEE;
+                        border-radius: 100px;
+                    }
+
+                    &.style-2 {
+                       margin-left: -20px;
+
+                        @include breakpoint (max-xl) {
+                            margin-left: -30px;
+                        }
+
+                        @include breakpoint (max-lg) {
+                            margin-left: -20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .faq-items {
+        position: relative;
+        z-index: 9;
+
+        .accordion {
+            .accordion-item {
+                border: none;
+
+            h4 {
+                button {
+                line-height: 1;
+                font-weight: 600;
+                padding: 29px 30px;
+                color: $gt-header-color;
+
+                cursor: pointer;
+
+                    @include breakpoint(max-sm) {
+                        font-size: 18px;
+                        line-height: 1.6;
+                        padding: 22px 20px;
+                    }
+                }
+            }
+
+            .accordion-body {
+                padding: 20px 30px;
+                background-color: $gt-white;
+                box-shadow: 8px 8px 32px 0 rgba(36, 12, 135, 0.08);
+                backdrop-filter: blur(5px);
+
+                p {
+                    color: $gt-header-color;
+                    font-size: 16px;
+                    line-height: 32px;
+                    font-weight: 400;
+
+                    @include breakpoint(max-sm) {
+                        width: 100%;
+                        font-size: 14px;
+                        line-height: 28px;
+                    }
+                }
+            }
+        }
+
+        .accordion-button {
+            background-color: $gt-white;
+            color: $gt-header-color;
+            box-shadow: 8px 8px 32px 0 rgba(36, 12, 135, 0.08);
+            backdrop-filter: blur(5px);
+
+            &::after {
+                content: "\e09f";
+                font-family: "Font Awesome 6 Pro";
+                background: transparent;
+                font-weight: 900;
+                transition: all 0.3s ease-in-out !important;
+                color: $gt-header-color;
+            }
+
+            &:not(.collapsed) {
+                background-color: $gt-white;
+                box-shadow: 8px 8px 32px 0 rgba(36, 12, 135, 0.08);
+                backdrop-filter: blur(5px);
+                color: $gt-header-color;
+
+                &::after {
+                    content: "\e093";
+                    font-family: "Font Awesome 6 Pro";
+                    background: transparent;
+                    font-weight: 900;
+                    color: $gt-theme-color;
+                    transform: rotate(0);
+                }
+            }
+         }
+      }
+    }
+}

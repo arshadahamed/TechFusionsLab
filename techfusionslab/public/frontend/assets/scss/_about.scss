@@ -1,0 +1,566 @@
+.gt-about-wrapper-2 {
+
+    .gt-about-content {
+
+        .gt-about-item {
+           margin-top: 40px;
+           @include flex;
+           gap: 30px;
+
+            @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                margin-top: 30px;
+            }
+
+            .gt-about-left {
+                display: grid;
+
+                .gt-about-circle-image {
+                   position: relative;
+                   z-index: 1;
+
+                    img {
+                        border-radius: 100%;
+                        border: 4px solid $gt-bg-color;
+                    }
+                }
+
+                .gt-circle-box {
+                    width: 272px;
+                    height: 272px;
+                    line-height: 272px;
+                    text-align: center;
+                    background-color: $gt-header-color;
+                    border-radius: 100%;
+                    margin-top: -90px;
+                    position: relative;
+
+                     img {
+                        animation: cir36 10s linear infinite;
+                    }
+
+                    h2 {
+                        color: $gt-theme-color-2;
+                        font-size: 72px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%,-50%);
+                    }
+                }
+            }
+
+            .gt-about-right {
+                .gt-text {
+                    margin-bottom: 24px;
+                }
+
+                .gt-icon-item {
+                    @include flex;
+                    gap: 15px;
+                    padding: 16px 0px 16px 0px;
+                    background-color: $gt-white;
+                    margin-bottom: 24px;
+
+                     @include breakpoint (max-xl) {
+                        flex-wrap: wrap;
+                        padding: 16px;
+                    }
+
+                    .icon {
+                        width: 64px;
+                        height: 64px;
+                        line-height: 64px;
+                        text-align: center;
+                        background-color: $gt-theme-color-2;
+
+                        img {
+                            @include transition;
+                            display: inline-block;
+                        }
+                    }
+
+                    .content {
+                        h4 {
+                            font-weight: 600;
+                        }
+
+                        p {
+                            max-width: 332px;
+                        }
+                    }
+
+                    &:hover {
+                        .icon {
+                            background-color: $gt-theme-color;
+
+                            img {
+                                transform: scaleX(-1) !important;
+                                filter: brightness(0) invert(1);
+                            }
+                        }
+                    }
+                }
+
+                .gt-theme-btn {
+                    margin-top: 24px;
+                }
+            }
+        }
+    }
+
+    .gt-about-image {
+        position: relative;
+        margin-left: 20px;
+        overflow: hidden;
+
+         &::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 0%;
+            left: 50%;
+            top: 50%;
+            background-color: rgba(255,255,255,.3);
+            transform: translate(-50%,-50%) rotate(-45deg);
+            z-index: 1;
+        }
+
+        @include breakpoint (max-xl) {
+            margin-left: 0;
+        }
+
+        .top-shape {
+            position: absolute;
+            left: -21px;
+            top: -21px;
+        }
+
+        img {
+            @include imgw;
+        }
+
+        &:hover {
+            &::after {
+                height: 250%;
+                transition: all 600ms linear;
+                background-color: transparent;
+            }
+        }
+    }
+}
+
+.gt-about-wrapper-3 {
+
+    .gt-about-content {
+
+        .gt-text {
+            max-width: 572px;
+            margin-top: 24px;
+        }
+
+        .gt-about-icon {
+              @include flex;
+              gap: 60px;
+              margin-top: 30px;
+              padding-bottom: 40px;
+              margin-bottom: 24px;
+              border-bottom: 1px solid rgba(202, 210, 210, 0.24);
+
+              @include breakpoint (max-xl) {
+                 flex-wrap: wrap;
+                 gap: 30px;
+                 padding-bottom: 30px;
+              }
+
+              .gt-icon-items {
+                @include flex;
+                gap: 16px;
+
+                .gt-icon {
+                    width: 56px;
+                    height: 56px;
+                    line-height: 56px;
+                    text-align: center;
+                    background-color: $gt-theme-color-2;
+
+                    img {
+                        @include transition;
+                        display: inline-block;
+                    }
+                }
+
+                .content {
+                    h4 {
+                        font-weight: 500;
+                    }
+                }
+
+                &:hover {
+                    .gt-icon {
+                        background-color: $gt-theme-color;
+
+                        img {
+                            transform: scaleX(-1) !important;
+                            filter: brightness(0) invert(1);
+                        }
+                    }
+                }
+            }
+        }
+
+        .gt-list {
+            border-left: 4px solid $gt-theme-color;
+            padding: 0 30px;
+
+            li {
+                font-size: 20px;
+                font-weight: 600;
+                color: $gt-header-color;
+
+                @include breakpoint (max-xl) {
+                    font-size: 16px;
+                }
+
+                &:not(:last-child) {
+                    margin-bottom: 24px;
+                }
+
+                i {
+                    color: $gt-theme-color;
+                    margin-right: 10px;
+                }
+            }
+        }
+
+        .gt-about-button {
+            @include flex;
+            gap: 24px;
+            margin-top: 48px;
+
+            @include breakpoint (max-xl) {
+                margin-top: 30px;
+                flex-wrap: wrap;
+            }
+
+            .gt-contacts-item {
+                @include flex;
+                gap: 15px;
+
+                .icon {
+                    width: 56px;
+                    height: 56px;
+                    line-height: 56px;
+                    text-align: center;
+                    color: $gt-header-color;
+                    background-color: $gt-theme-color-2;
+                    border-radius: 100px;
+                    font-size: 20px;
+                }
+
+                .content {
+                    h4 {
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+    .gt-about-image {
+        position: relative;
+        z-index: 9;
+
+        img {
+            @include imgw;
+        }
+
+        .gt-conent {
+            @include flex;
+            gap: 10px;
+            position: absolute;
+            top: -10px;
+            left: 0;
+            transform: rotate(-10.677deg);
+
+            @include breakpoint (max-xl) {
+               top: -20px;
+            }
+
+            @include breakpoint (max-lg) {
+               top: 25px;
+            }
+
+             @include breakpoint (max-sm) {
+                display: none;
+            }
+
+
+            h2 {
+                color: $gt-theme-color;
+                font-size: 56px;
+
+                 @include breakpoint (max-xxl) {
+                   font-size: 45px;
+               }
+
+
+                 @include breakpoint (max-xl) {
+                   font-size: 30px;
+               }
+
+                @include breakpoint (max-lg) {
+                   font-size: 35px;
+               }
+            }
+
+            p {
+                max-width: 250px;
+            }
+        }
+
+        .star {
+            color: $gt-header-color;
+            background-color: $gt-white;
+            transform: rotate(-12.102deg);
+            width: 56px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            position: absolute;
+            right: 30px;
+            top: 50px;
+            border-radius: 100px;
+            font-size: 20px;
+        }
+
+        .gt-client-info {
+            @include flex;
+            gap: 12px;
+            transform: rotate(-90deg);
+            padding: 24px 50px 24px 24px;
+            background-color: $gt-white;
+            border-radius: 0px 0px 132px 0px;
+            position: absolute;
+            left: -100px;
+            bottom: 90px;
+
+             @include breakpoint (max-xl) {
+               bottom: 15px;
+            }
+
+             @include breakpoint (max-lg) {
+                bottom: 90px;
+            }
+
+            @include breakpoint (max-sm) {
+                display: none;
+            }
+
+            .info-image {
+                transform: rotate(-260deg);
+            }
+
+            .content {
+                h4 {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .bg-shape {
+            position: absolute;
+            z-index: -1;
+            top: -100px;
+            left: 0;
+            bottom: 0;
+
+            @include breakpoint (max-xl) {
+                display: none;
+            }
+        }
+    }
+}
+
+.gt-about-wrapper {
+
+    .gt-about-image {
+        position: relative;
+        max-width: 580px;
+
+         @include breakpoint (max-xl) {
+            max-width: initial;
+        }
+
+        img {
+            @include imgw;
+        }
+
+        .gt-shape {
+            position: absolute;
+            top: 76px;
+            left: 50px;
+        }
+    }
+
+    .gt-about-content {
+
+        .gt-text {
+            margin-top: 24px;
+        }
+
+        .gt-about-right-item {
+            @include flex;
+            gap: 70px;
+            margin-top: 30px;
+
+            @include breakpoint (max-xxl) {
+                flex-wrap: wrap;
+                gap: 30px;
+            }
+
+            .gt-about-icon {
+
+                .gt-icon-item {
+                    display: flex;
+                    gap: 16px;
+                    margin-bottom: 48px;
+
+                     @include breakpoint (max-xl) {
+                       margin-bottom: 30px;
+                    }
+
+                    .gt-icon {
+                        width: 56px;
+                        height: 56px;
+                        line-height: 56px;
+                        text-align: center;
+                        border-radius: 100px;
+                        background-color: $gt-theme-color-2;
+                        position: relative;
+
+                        &::after {
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            z-index: -1;
+                            background-color: $gt-theme-color;
+                            content: "";
+                            border-radius: 50%;
+                            -webkit-transition: all 300ms ease;
+                            transition: all 300ms ease;
+                            -webkit-transform: scale(0);
+                                    transform: scale(0);
+                        }
+
+                        img {
+                            @include transition;
+                            display: inline-block;
+                        }
+                    }
+
+                    .content {
+                       h4 {
+                          font-weight: 600;
+                       }
+
+                        p {
+                            max-width: 265px;
+                        }
+                    }
+
+                    &:hover {
+                        .gt-icon {
+                             &::after {
+                                -webkit-transform: scale(1);
+                                transform: scale(1);
+                                z-index: 1;
+                            }
+
+                            img {
+                                transform: scaleX(-1) !important;
+                                filter: brightness(0) invert(1);
+                                position: relative;
+                                z-index: 999;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .gt-right-image {
+                position: relative;
+                padding: 16px 16px 0;
+                background-color: $gt-theme-color-2;
+                border-radius: 16px;
+
+                &::before {
+                    @include before;
+                    background: linear-gradient(178deg, rgba(194, 223, 147, 0.00) 35.88%, var(--Text-Primary, rgba(6, 50, 50, 0.88)) 98.6%);
+                     border-radius: 16px;
+                }
+
+                img {
+                    @include imgw;
+                    border-radius: 16px;
+                }
+
+                .gt-content {
+                    position: absolute;
+                    bottom:16px;
+                    left: 30px;
+                    right: 30px;
+                    text-align: center;
+
+                    h4 {
+                        font-weight: 600;
+                        color: $gt-white;
+                    }
+
+                    span {
+                        color: rgba(255, 255, 255, 0.7);
+                    }
+                }
+            }
+        }
+
+        .gt-about-button-item {
+            @include flex;
+            gap: 24px;
+            margin-top: 30px;
+
+             @include breakpoint (max-xxxl) {
+                margin-top: 30px;
+            }
+
+             @include breakpoint (max-xl) {
+                flex-wrap: wrap;
+                margin-top: 30px;
+            }
+
+            .button-text {
+                display: flex;
+
+                .video-btn {
+                    background-color: $gt-white;
+                    color: $gt-theme-color-2;
+                    display: inline-block;
+                    font-size: 16px;
+                    height:56px;
+                    width: 56px;
+                    line-height:56px;
+                    border-radius: 100px;
+                    text-align: center;
+                }
+
+                span {
+                    font-size: 18px;
+                    color: $gt-header-color;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}

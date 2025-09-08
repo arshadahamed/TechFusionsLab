@@ -1,0 +1,118 @@
+
+.gt-theme-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 100px;
+    border: 0;
+    position: relative;
+    min-width: auto;
+    text-transform: uppercase;
+    overflow: hidden;
+    @include transition;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    background-color: $gt-theme-color;
+    color: $gt-white;
+
+    span {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity .35s ease, transform .35s ease;
+
+        i {
+            transition: transform 0.35s ease;
+            transform: rotate(-45deg);
+        }
+    }
+
+    span:last-child {
+        position: absolute;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    &:hover {
+        background-color: $gt-header-color;
+
+        span:first-child,
+        .btn:focus span:first-child {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        span:last-child,
+        .btn:hover span:last-child,
+        .btn:focus span:last-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        i {
+            transform: rotate(0);
+        }
+    }
+}
+
+.gt-link-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    position: relative;
+    min-width: auto;
+    text-transform: capitalize;
+    overflow: hidden;
+    @include transition;
+    font-family: "Lato", sans-serif;
+    font-weight: 600;
+    color: $gt-theme-color;
+
+
+    span {
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: opacity .35s ease, transform .35s ease;
+
+        @include breakpoint (max-xxl) {
+       font-size: 14px;
+    }
+
+        i {
+            transition: transform 0.35s ease;
+            transform: rotate(-45deg);
+        }
+    }
+
+    span:last-child {
+        position: absolute;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    &:hover {
+
+        span:first-child,
+        .btn:focus span:first-child {
+            opacity: 0;
+            transform: translateY(-50px);
+        }
+
+        span:last-child,
+        .btn:hover span:last-child,
+        .btn:focus span:last-child {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        i {
+            transform: rotate(0);
+        }
+    }
+}

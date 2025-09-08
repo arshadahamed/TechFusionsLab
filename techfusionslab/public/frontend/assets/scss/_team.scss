@@ -1,0 +1,574 @@
+.gt-team-card-item-2 {
+    margin-top: 30px;
+
+    .gt-team-image {
+        position: relative;
+        overflow: hidden;
+        height: 396px;
+
+        img {
+            @include imgw;
+            object-fit: cover;
+        }
+
+         &::before{
+            position: absolute;
+            z-index: 1;
+            display: block;
+            content: "";
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255,255,255,.3);
+            bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            margin: auto;
+        }
+
+        .gt-team-content {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: $gt-header-color;
+            padding: 12px 24px;
+            width: 295px;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background: $gt-theme-color-2; 
+                z-index: 1;
+                transition: width 0.5s ease;
+            }
+
+            h4 {
+                a {
+                    background-position: 0 95%;
+                    background-repeat: no-repeat;
+                    background-size: 0% 2px;
+                    display: inline;
+                    color: $gt-white;
+                    
+                    &:hover {
+                        color: $gt-theme-color;
+                        background-size: 100% 2px;
+                        background-image: linear-gradient(180deg, $gt-theme-color 0%, $gt-theme-color 100%);
+                    }
+                }
+            }
+
+            p {
+                color: $gt-white;
+                opacity: 0.7;
+                margin-top: 5px;
+            }
+        }
+
+         .gt-social-icon {
+            @include flex;
+            gap: 10px;
+            transform: rotate(90deg);
+            position: absolute;
+            background-color: $gt-theme-color;
+            padding: 12px 24px;
+            top: 40%;
+            right: -30%;
+            @include transition;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 9999;
+
+            a {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                text-align: center;
+                background-color: $gt-white;
+                border-radius: 100px;
+                color: #B0BCBC;
+                transform: rotate(-90deg);
+                z-index: 999;
+
+                &:hover {
+                    background-color: $gt-header-color;
+                    color: $gt-white;
+                }
+            }
+
+            span {
+                color: $gt-white;
+            }
+        }
+    }
+
+    &:hover {
+
+        .gt-team-image {
+
+             &::before {
+                animation: circle 1.5s ease-out forwards;
+            }
+
+            .gt-team-content {
+
+                h4 {
+                    position: relative;
+                    z-index: 9;
+
+                    a {
+                        color: $gt-header-color;
+
+                        &:hover {
+                            color: $gt-header-color;
+                            background-size: 100% 2px;
+                            background-image: linear-gradient(180deg, $gt-header-color 0%, $gt-header-color 100%);
+                        }
+                    }
+                }
+
+                p {
+                    color: $gt-header-color;
+                    opacity: 0.7;
+                     position: relative;
+                    z-index: 9;
+                }
+
+                &::before {
+                    width: 100%;
+                }
+            }
+
+            .gt-social-icon {
+                opacity: 1;
+                visibility: visible;
+                right: -100px;
+            }
+        }
+    }
+}
+
+.gt-team-section-2 {
+    position: relative;
+
+    .left-shape {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        animation: slideInLeft 1.5s ease-out forwards;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+     .right-shape {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        animation: slideInRight 1.5s ease-out forwards;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}
+
+.gt-team-card-items-3 {
+    margin-top: 30px;
+
+    .gt-team-image {
+        overflow: hidden;
+        position: relative;
+
+        img {
+            @include imgw;
+             transform: scale(1.02);
+            transition: all 1.5s ease-out;
+        }
+
+         &::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 0%;
+            left: 50%;
+            top: 50%;
+            background-color: rgba(255,255,255,.3);
+            transform: translate(-50%,-50%) rotate(-45deg);
+            z-index: 1;
+        }
+    }
+
+    .gt-team-content {
+        background-color: $gt-bg-color;
+        padding: 16px 24px 0;
+        text-align: center;
+        margin-top: -90px;
+        margin-left: 48px;
+        margin-right: 48px;
+        position: relative;
+        z-index: 9;
+
+         h4 {
+            a {
+                background-position: 0 95%;
+                background-repeat: no-repeat;
+                background-size: 0% 2px;
+                display: inline;
+                
+                &:hover {
+                    color: $gt-theme-color;
+                    background-size: 100% 2px;
+                    background-image: linear-gradient(180deg, $gt-theme-color 0%, $gt-theme-color 100%);
+                }
+            }
+        }
+
+        .gt-social-icon {
+            @include flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(177, 178, 182, 0.06);
+            background-color: #F2F8E7;
+            margin-top: 16px;
+            position: relative;
+
+             &::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 0%;
+                height: 100%;
+                background: $gt-theme-color; 
+                z-index: 1;
+                transition: width 0.5s ease;
+            }
+
+            a {
+                width: 56px;
+                height: 56px;
+                line-height: 56px;
+                text-align: center;
+                color: $gt-header-color;
+                border: 1px solid rgba(202, 210, 210, 0.16);
+            }
+        }
+    }
+
+    &:hover {
+
+        .gt-team-image {
+            &::after {
+                height: 250%;
+                transition: all 600ms linear;
+                background-color: transparent;
+            }
+
+            img {
+                -webkit-transform: scale3d(1.1, 1.1, 1);
+                transform: scale3d(1.1, 1.1, 1);
+            }
+        }
+
+        .gt-team-content {
+            .gt-social-icon {
+                a {
+                    color: $gt-white;
+                    position: relative;
+                    z-index: 9;
+                }
+
+                 &::before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+.gt-team-wrapper {
+  overflow: hidden;
+  position: relative;
+
+  .gt-text {
+    max-width: 640px;
+    margin-top: 24px;
+    margin-bottom: 48px;
+  }
+
+  .gt-team-card-items {
+     transform: scale(0.95);
+    transition: all 0.5s ease;
+    .gt-team-image {
+      position: relative;
+      overflow: hidden;
+      max-width: 348px;
+
+      img {
+        @include imgw;
+        opacity: 0.7;
+      }
+
+      .gt-team-content {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 16px 20px 50px;
+        background-color: $gt-header-color;
+        text-align: center;
+        width: 351px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 999;
+        @include transition;
+
+        h4 {
+          a {
+            display: inline;
+            color: $gt-white;
+            background-position: 0 95%;
+            background-repeat: no-repeat;
+            background-size: 0% 2px;
+
+            &:hover {
+              color: $gt-theme-color;
+              background-size: 100% 2px;
+              background-image: linear-gradient(180deg, $gt-theme-color 0%, $gt-theme-color 100%);
+            }
+          }
+        }
+
+        p {
+          color: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+  }
+
+  .swiper-slide.swiper-slide-active {
+    .gt-team-card-items {
+         transform: scale(1);
+        margin-left: 30px;
+
+        @include breakpoint (max-xl) {
+            margin-left: 0;
+        }
+
+    
+
+      .gt-team-image {
+        border-radius: 1000px;
+        height: 348px;
+        max-width: 348px;
+
+        img {
+          opacity: initial;
+          border-radius: 1000px;
+          object-fit: cover;
+        }
+
+        .gt-team-content {
+          opacity: 1;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  .swiper-slide-next {
+    margin-top: -180px;
+    margin-left: 60px;
+
+    @include breakpoint (max-xl) {
+        margin-left: 0;
+        margin-top: 0;
+     }
+  }
+
+
+  .swiper {
+    max-width: 1320px;
+    width: 100%;
+    overflow: initial;
+
+    .swiper-wrapper {
+      max-width: 1320px;
+      width: 100%;
+      overflow: initial;
+    }
+  }
+
+  .array-buttons {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    @include flex;
+
+    @include breakpoint (max-xxl) {
+        display: none;
+    }
+
+    .array-prev {
+        position: relative;
+        z-index: 999;
+    }
+
+    .array-next {
+        position: relative;
+        z-index: 999;
+    }
+  }
+}
+
+
+
+.gt-team-details-wrapper {
+    .gt-team-details-image {
+        img {
+            @include imgw;
+        }
+    }
+
+    .gt-team-details-content {
+        margin-left: 40px;
+        @include breakpoint (max-lg){
+            margin-left: 0;
+        }
+
+        .details-info {
+            border-bottom: 1px solid $gt-border-color;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+
+            h3 {
+                margin-bottom: 5px;
+            }
+
+            span {
+                color: $gt-text-color;
+            }
+        }
+
+        .progress-wrap {
+            .pro-items {
+                width: 100%;
+
+                &:not(:last-child){
+                    margin-bottom: 30px;
+                }
+                .pro-head {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 10px;
+
+                    .title {
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: $gt-black;
+                    }
+                    
+                    .point {
+                        font-size: 16px;
+                        color: $gt-black;
+                        font-weight: 600;
+                    }
+                }
+                .progress {
+                    background: $gt-bg-color;
+                    justify-content: flex-start;
+                    border-radius: 100px;
+                    align-items: center;
+                    position: relative;
+                    display: flex;
+                    height: 12px;
+                    width: 100%;
+                }
+                
+                .progress-value {
+                    animation: load 3s normal forwards;
+                    border-radius: 0;
+                    background: $gt-theme-color;
+                    height: 12px;
+                    width: 0;
+                    border-radius: 16px;
+                }
+                .style-two{
+                    animation: load2 3s normal forwards;
+                }
+               
+                @keyframes load {
+                    0% { width: 0; }
+                    100% { width: 85%; }
+                }
+
+                @keyframes load2 {
+                    0% { width: 0; }
+                    100% { width: 95%; }
+                }
+            }
+        }
+
+        .social-icon {
+            margin-top: 40px;
+
+            span {
+                font-size: 16px;
+                font-weight: 700;
+                color: $gt-header-color;
+                margin-right: 15px;
+            }
+
+            a {
+                width: 36px;
+                height: 36px;
+                line-height: 36px;
+                text-align: center;
+                border: 1px solid $gt-border-color;
+                display: inline-block;
+                color: $gt-text-color;
+                @include transition;
+
+                &:not(:last-child){
+                    margin-right: 5px;
+                }
+
+                &:hover {
+                    background-color: $gt-theme-color;
+                    color: $gt-white;
+                    border: 1px solid transparent;
+                }
+            }
+        }
+    }
+
+    .team-single-history {
+        .title {
+            border-bottom: 1px solid $gt-border-color;
+            padding-bottom: 30px;
+        }
+
+        h5 {
+            font-weight: 600;
+
+            span {
+                border: 1px solid $gt-theme-color;
+                color: $gt-theme-color;
+                font-size: 14px;
+                font-weight: 400;
+                padding: 6px 16px;
+                border-radius: 16px;
+                margin-left: 20px;
+            }
+        }
+    }
+}

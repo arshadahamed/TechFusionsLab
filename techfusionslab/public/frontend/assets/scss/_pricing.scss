@@ -1,0 +1,357 @@
+.tab-content {
+
+    .gt-pricing-card-items-3 {
+        padding: 48px;
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(24px);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-top: 30px;
+        position: relative;
+
+        &::before {
+            @include before;
+            background-color: $gt-theme-color;
+            transform: scaleX(0.7) rotateX(20deg);
+            opacity: 0;
+            transition: all 0.4s linear;
+            z-index: -1;
+            @include transition;
+       }
+
+        @include breakpoint (max-xxl) {
+            padding: 30px;
+        }
+
+        .gt-pricing-header {
+            margin-bottom: 24px;
+
+             span {
+                font-size: 20px;
+                font-weight: 600;
+                color: $gt-white;
+                display: inline-block;
+                margin-bottom: 16px;
+            }
+
+            h3 {
+                color: $gt-theme-color-2;
+                font-size: 32px;
+                font-weight: 600;
+            }
+
+            p {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+
+        .gt-theme-btn {
+            background-color: transparent;
+            border: 1px solid $gt-theme-color-2;
+            color: $gt-theme-color-2;
+            margin-bottom: 40px;
+        }
+
+        .text {
+            color: $gt-white;
+            position: relative;
+            font-family: $gt-body-font;
+
+            &::before {
+                @include before;
+                background-color: rgba(202, 210, 210, 0.4);
+                width: 250px;
+                height: 1px;
+                left: 72px;
+                top: 11px;
+            }
+        }
+
+        .gt-pricing-list {
+            margin-top: 26px;
+
+            li {
+                color: $gt-white;
+
+                &:not(:last-child) {
+                    margin-bottom: 10px;
+                }
+
+                i {
+                    color: $gt-white;
+                    margin-right: 12px;
+                }
+            }
+        }
+
+         &:hover {
+            transform: translateY(-10px);
+
+            &::before {
+                transform: scaleX(1.0) rotateX(0deg);
+                transition: all 0.4s linear;
+                opacity: 1;
+                z-index: 1;
+            }
+
+            .gt-pricing-header {
+                position: relative;
+                z-index: 1;
+
+                h3 {
+                    color: $gt-white;
+                }
+
+                p {
+                    color: $gt-white;
+                }
+            }
+
+            .gt-theme-btn {
+                position: relative;
+                z-index: 999;
+                background-color: $gt-white;
+                color: $gt-header-color;
+
+                &:hover {
+                    background-color: $gt-header-color;
+                    border: 1px solid $gt-header-color;
+
+                    span {
+                        color: $gt-white;
+                    }
+                }
+            }
+
+            .text {
+                color:  $gt-white;
+                position: relative;
+                z-index: 1;
+            }
+
+            .gt-pricing-list {
+                position: relative;
+                z-index: 1;
+                
+            }
+        }
+    }
+}
+
+.gt-pricing-section-3 {
+    position: relative;
+    z-index: 9;
+
+    .gt-left-shape {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: -1;
+        transform: translateX(-100%);
+        animation: slideInLeft 1.5s ease-out forwards;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+
+     .gt-right-shape {
+        position: absolute;
+        right: 0;
+        top: 0;
+        transform: translateX(100%);
+        animation: slideInRight 1.5s ease-out forwards;
+
+        @include breakpoint (max-xl) {
+            display: none;
+        }
+    }
+}
+
+.gt-pricing-card-items {
+    padding: 40px;
+    background-color: $gt-white;
+    margin-top: 30px;
+    position: relative;
+    @include transition;
+
+    @include breakpoint (max-xl) {
+        padding: 30px;
+    }
+
+     &::before {
+        @include before;
+        background-color: $gt-theme-color;
+        transform: scaleX(0.7) rotateX(20deg);
+        opacity: 0;
+        transition: all 0.4s linear;
+        z-index: -1;
+        @include transition;
+    }
+
+    .gt-pricing-header {
+        @include flex;
+        gap: 30px;
+        border-bottom: 1px solid rgba(202, 210, 210, 0.48);
+        padding-bottom: 30px;
+        margin-bottom: 25px;
+
+        @include breakpoint (max-xxl) {
+           gap: 10px;
+        }
+
+        @include breakpoint (max-xl) {
+           gap: 30px;
+        }
+
+
+        .gt-pricing-circle {
+            width: 120px;
+            height: 120px;
+            line-height: 120px;
+            border-radius: 100%;
+            text-align: center;
+            background-color: $gt-theme-color-2;
+            flex-direction: column; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            
+            h4 {
+                font-size: 24px;
+                font-weight: 800;
+                line-height: 1.2;
+                margin: 0; 
+
+                @include breakpoint (max-xl4) {
+                   font-size: 20px;
+                }
+            }
+
+            span {
+                line-height: 1;
+                margin-top: 5px;
+            }
+        }
+
+        .content {
+            h3 {
+                @include breakpoint (max-xxl) {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .gt-pricing-list {
+        li {
+            color: $gt-header-color;
+
+            i {
+                margin-right: 10px;
+            }
+
+            &:not(:last-child) {
+                margin-bottom: 15px;
+            }
+
+            &.style-2 {
+                color: $gt-text-color;
+            }
+        }
+    }
+
+    .gt-theme-btn {
+        margin-top: 32px;
+        background-color: $gt-header-color;
+
+        &:hover {
+            background-color: $gt-theme-color;
+        }
+    }
+
+    &:hover {
+        transform: translateY(-10px);
+
+        .gt-pricing-circle {
+             transform: translateX(10px) scale(1.1) rotate(10deg);
+        }
+        
+        &::before {
+            transform: scaleX(1.0) rotateX(0deg);
+            transition: all 0.4s linear;
+            opacity: 1;
+            z-index: 1;
+        }
+
+        .gt-pricing-header {
+            position: relative;
+            z-index: 1;
+
+            .content {
+                h3 {
+                    color: $gt-white;
+                }
+
+                p {
+                    color: $gt-white;
+                }
+            }
+        }
+
+        .gt-pricing-list {
+            position: relative;
+            z-index: 1;
+
+            li {
+                color: $gt-white;
+            }
+        }
+
+        .gt-theme-btn {
+            position: relative;
+            z-index: 1;
+
+            &:hover {
+                background-color: $gt-white;
+
+                span {
+                    color: $gt-header-color;
+                }
+            }
+        }
+    }
+}
+
+.gt-pricing-section-1 {
+    .nav {
+		display: flex;
+		background: $gt-white;
+        justify-content: center;
+        max-width: 340px;
+       text-align: center;
+       margin: 0 auto;
+       margin-bottom: 30px;
+
+       @include breakpoint (max-sm) {
+        margin-top: 30px;
+       }
+
+		li {
+			
+			.nav-link {
+				color: $gt-header-color;
+				@include transition;
+				padding: 18px 26px;
+				font-family: $gt-body-font;
+				line-height: 1;
+
+				&.active {
+					position: relative;
+					background-color: $gt-theme-color;
+					color: $gt-white;
+				}
+			}
+		}
+	}
+}
