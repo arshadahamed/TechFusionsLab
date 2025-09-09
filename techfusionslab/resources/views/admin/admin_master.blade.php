@@ -27,9 +27,8 @@
         <!-- Icons -->
         <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
-        <!-- ToatCSS-->
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
-
+        <!-- Toastr CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
 
     </head>
 
@@ -90,8 +89,14 @@
         <!-- App js-->
         <script src="{{ asset('backend/assets/js/app.js')}}"></script>
 
+        <!-- SweetAlert2 js-->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <!-- Custom js-->
+        <script src="{{ asset('backend/assets/js/code.js')}}"></script>
+
         <!-- Toast js-->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js'"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
         <!-- Datatables js -->
         <script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js')}}"></script>

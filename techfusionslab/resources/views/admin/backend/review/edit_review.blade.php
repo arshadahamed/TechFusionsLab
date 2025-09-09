@@ -30,35 +30,35 @@
                                                 <div class="card-header">
                                                     <div class="row align-items-center">
                                                         <div class="col">
-                                                            <h4 class="card-title mb-0">Add Review</h4>
+                                                            <h4 class="card-title mb-0">Edit Review</h4>
                                                         </div><!--end col-->
                                                     </div>
                                                 </div>
 
-                                                <form action="{{ route('store.review') }}" method="post"
+                                                <form action="{{ route('update.review', $review->id) }}" method="post"
                                                     enctype="multipart/form-data">
                                                     @csrf
-
+                                                    <input type="hidden" name="id" value="{{ $review->id }}">
                                                     <div class="card-body">
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label"> Name</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <input class="form-control" type="text" name="name">
+                                                                <input class="form-control" type="text" name="name" value="{{ $review->name }}">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label">Position</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <input class="form-control" type="text" name="position">
+                                                                <input class="form-control" type="text" name="position" value="{{ $review->position }}">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label">Message</label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <textarea name="message" class="form-control"></textarea>
+                                                                <textarea name="message" class="form-control">{{ $review->message }}</textarea>
                                                             </div>
                                                         </div>
 
@@ -66,14 +66,14 @@
                                                             <label class="form-label">User Photo</label>
                                                             <div class="col-lg-12 col-xl-12">
                                                                 <input class="form-control" type="file" name="image"
-                                                                    id="image">
+                                                                    id="image" value="{{ $review->image }}">
                                                             </div>
                                                         </div>
 
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label"> </label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <img id="showImage" src="{{ url('upload/no_image.jpg') }}"
+                                                                <img id="showImage" src="{{ asset($review->image) }}"
                                                                     class="rounded-circle avatar-xxl img-thumbnail float-start"
                                                                     alt="image profile">
 

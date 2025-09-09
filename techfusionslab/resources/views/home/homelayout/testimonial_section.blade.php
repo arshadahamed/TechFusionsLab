@@ -2,7 +2,8 @@
     <div class="container">
         <div class="gt-section-title text-center">
             <span class="gt-sub-title wow fadeInUp">
-                <img src="{{ asset('frontend/assets/img/home-1/icon/03.svg') }}" alt="img"> Client Testimonials <img src="{{ asset('frontend/assets/img/home-1/icon/03.svg') }}" alt="img">
+                <img src="{{ asset('frontend/assets/img/home-1/icon/03.svg') }}" alt="img"> Client Testimonials
+                <img src="{{ asset('frontend/assets/img/home-1/icon/03.svg') }}" alt="img">
             </span>
             <h2 class="wow fadeInUp" data-wow-delay=".3s">
                 What Our Clients Say
@@ -10,7 +11,8 @@
         </div>
         <div class="gt-testimonial-wrapper">
             <div class="row g-4">
-                <div class="col-xl-3 col-lg-3 wow fadeInUp" data-wow-delay=".3s">
+                <!-- Left -->
+                <div class="col-xl-3 col-lg-3 wow fadeInUp" data-wow-delay=".5s">
                     <div class="gt-testimonial-left">
                         <div class="gt-info-item">
                             <div class="client-image">
@@ -36,46 +38,38 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Center (Slider) -->
                 <div class="col-xl-6 col-lg-6">
                     <div class="gt-testimonial-bg">
                         <div class="swiper gt-testimonial-slider-2">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                    <div class="gt-testimonial-content">
-                                    <p>
-                                        "Partnering with this team transformed the way I manage my business finances. From cash flow planning to tax strategies, they provided practical "
-                                    </p>
-                                    <div class="gt-client-item">
-                                        <div class="client-image">
-                                            <img src="{{ asset('frontend/assets/img/home-1/testimonial/client-3.png') }}" alt="img">
-                                        </div>
-                                        <div class="cont">
-                                            <h3>Sarah Ahmed</h3>
-                                            <span>Small Business Owner</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                    <div class="gt-testimonial-content">
-                                    <p>
-                                        "Partnering with this team transformed the way I manage my business finances. From cash flow planning to tax strategies, they provided practical "
-                                    </p>
-                                    <div class="gt-client-item">
-                                        <div class="client-image">
-                                            <img src="{{ asset('frontend/assets/img/home-1/testimonial/client-3.png') }}" alt="img">
-                                        </div>
-                                        <div class="cont">
-                                            <h3>Sarah Ahmed</h3>
-                                            <span>Small Business Owner</span>
+                            <div class="swiper-wrapper">
+                                @php
+                                    $reviews = App\Models\Review::latest()->get();
+                                @endphp
+
+                                @foreach ($reviews as $item)
+                                    <div class="swiper-slide">
+                                        <div class="gt-testimonial-content">
+                                            <p>"{{ $item->message }}"</p>
+                                            <div class="gt-client-item">
+                                                <div class="client-image">
+                                                    <img src="{{ asset($item->image) }}" alt="img">
+                                                </div>
+                                                <div class="cont">
+                                                    <h3>{{ $item->name }}</h3>
+                                                    <span>{{ $item->position }}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                        </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- Right -->
                 <div class="col-xl-3 col-lg-3 wow fadeInUp" data-wow-delay=".5s">
                     <div class="gt-testimonial-right">
                         <div class="gt-info-item">
