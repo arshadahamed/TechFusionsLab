@@ -81,10 +81,10 @@
                         <div class="gt-arrow">
                             <img src="{{ asset('frontend/assets/img/home-1/testimonial/quate.png') }}" alt="img">
                         </div>
-                        <a href="contact.html" class="gt-link-btn">
+                        {{-- <a href="contact.html" class="gt-link-btn">
                             <span>Read More Reviews <i class="fa-solid fa-arrow-right"></i></span>
                             <span>Read More Reviews <i class="fa-solid fa-arrow-right"></i></span>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
             </div>
