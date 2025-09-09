@@ -82,6 +82,7 @@ class HeroController extends Controller
             'message' => 'Hero Section Updated Successfully',
             'alert-type' => 'success'
         );
+
         return redirect()->route('edit.hero')->with($notification);
     }
 }
