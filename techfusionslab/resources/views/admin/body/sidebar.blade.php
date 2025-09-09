@@ -28,7 +28,7 @@
                 <li class="menu-title"></li>
 
                 <li>
-                    <a href="{{ route('dashboard') }}" data-bs-toggle="collapse">
+                    <a href="{{ route('dashboard') }}">
                         <i data-feather="home"></i>
                         <span> Dashboard </span>
                     </a>
@@ -63,17 +63,14 @@
 
                 <li>
                     <a href="#sidebarError" data-bs-toggle="collapse">
-                        <i data-feather="alert-octagon"></i>
-                        <span> Error Pages </span>
+                        <i data-feather="clipboard"></i>
+                        <span> Hero Section </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sidebarError">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="error-404.html" class="tp-link">Error 404</a>
-                            </li>
-                            <li>
-                                <a href="error-500.html" class="tp-link">Error 500</a>
+                                <a href="{{route('edit.hero')}}" class="tp-link">Edit Hero Section</a>
                             </li>
                         </ul>
                     </div>

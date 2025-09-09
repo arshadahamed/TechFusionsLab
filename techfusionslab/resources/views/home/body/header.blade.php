@@ -8,7 +8,7 @@
                             <img src="{{ asset('frontend/assets/img/logo/white-logo.png') }}" alt="logo-img">
                         </a>
                         <a href="index.html" class="header-logo-2">
-                            <img src="{{ asset('frontend/assets/img/logo/white-logo.png') }}" alt="logo-img">
+                            <img src="{{ asset('frontend/assets/img/logo/black-logo.png') }}" alt="logo-img">
                         </a>
                     </div>
                 </div>

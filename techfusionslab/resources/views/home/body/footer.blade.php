@@ -1,20 +1,27 @@
-<footer class="gt-footer-section-1 fix bg-cover" style="background-image: url({{ asset('frontend/assets/img/home-1/footer-bg-2.jpg') }});">
+<footer class="gt-footer-section-1 fix bg-cover"
+    style="background-image: url({{ asset('frontend/assets/img/home-1/footer-bg-2.jpg') }});">
     <div class="mycustom-marque section-padding pb-0">
         <div class="scrolling-wrap style-1">
             <div class="comm">
                 <div></div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
             </div>
             <div class="comm">
                 <div></div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
             </div>
             <div class="comm">
                 <div></div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
-                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}" alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
+                <div class="cmn-textslide"><img src="{{ asset('frontend/assets/img/home-1/arrow-2.png') }}"
+                        alt="img">LET’S GET IN TOUCH</div>
             </div>
         </div>
     </div>
@@ -34,11 +41,13 @@
                                 Ready Discover More? Contact Us Today!
                             </h3>
                             <p>
-                                Ready to take the next step? Reach out to our expert team today and discover how we can help your business grow
+                                Ready to take the next step? Reach out to our expert team today and discover how we can
+                                help your business grow
                             </p>
                             <form action="#">
                                 <div class="form-clt">
-                                    <input type="text" name="email" id="email" placeholder="Your Email Address">
+                                    <input type="text" name="email" id="email"
+                                        placeholder="Your Email Address">
                                     <button type="submit" class="gt-theme-btn">
                                         <span>SUBSCRIBE NOW</span>
                                         <span>SUBSCRIBE NOW</span>
@@ -77,7 +86,7 @@
                                     </ul>
                                 </div>
                             </div>
-                                <div class="col-xl-3 col-lg-3 col-md-4 wow fadeInUp" data-wow-delay=".5s">
+                            <div class="col-xl-3 col-lg-3 col-md-4 wow fadeInUp" data-wow-delay=".5s">
                                 <div class="gt-footer-single-items">
                                     <div class="gt-widget-title">
                                         <h4>QUICK LINKS</h4>
@@ -105,7 +114,7 @@
                                     </div>
                                     <div class="footer-contact-content">
                                         <p>
-                                            5 Warham Road, Harrow,<br>  England.
+                                            5 Warham Road, Harrow,<br> England.
                                         </p>
                                         <ul class="contact-list">
                                             <li>
@@ -118,9 +127,17 @@
                             </div>
                         </div>
                         <div class="gt-footer-bottom wow img_full img_right_animation">
-                            <a href="index.html"><img src="{{ asset('frontend/assets/img/logo/black-logo.png') }}" alt="img"></a>
-                            <p>Copyright© Arshad Ahamed</span> All Rights Reserved.</p>
+                            <a href="https://www.arshadahamed.com">
+                                <img src="{{ asset('frontend/assets/img/logo/white-logo.png') }}" alt="img">
+                            </a>
+                            <p>
+                                Copyright ©
+                                <a href="https://www.arshadahamed.com" style="color: white; margin-left: 4px; margin-right: 4px;">Arshad Ahamed</a>
+                                All Rights Reserved.
+                            </p>
+
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -1,4 +1,9 @@
-<section class="hero-section hero-1 fix bg-cover" style="background-image: url({{ asset('frontend/assets/img/home-1/hero/hero-1-bg.jpg') }});">
+
+@php
+    use App\Models\Hero;
+    $hero = Hero::first();
+@endphp
+<section class="hero-section hero-1 fix bg-cover" style="background-image: url ({{ $hero && $hero->bg_image ? asset('storage/' . $hero->bg_image) : asset('frontend/assets/img/home-1/hero/hero-1-bg.jpg') }});">
     <div class="radius-box-1">
         <div class="circle-image">
             <img src="{{ asset('frontend/assets/img/home-1/hero/circle.png') }}" alt="img">
@@ -15,7 +20,8 @@
         <div class="col-xl-12">
             <div class="gt-hero-content">
                 <h1 class="wow img-custom-anim-top" data-wow-duration="1.3s" data-wow-delay="0.3s">
-                    EMPOWERING YOUR  <br> FINANCIAL <span>CONFIDENCE</span>
+                    {{ $hero->title ?? 'EMPOWERING YOUR' }}  <br>
+                    FINANCIAL <span>{{ $hero->highlight ?? 'CONFIDENCE' }}</span>
                 </h1>
             </div>
         </div>
