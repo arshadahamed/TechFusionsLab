@@ -79,7 +79,7 @@
 
                 <li class="menu-title mt-2">General</li>
 
-                <li>
+                {{-- <li>
                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
                         <i data-feather="package"></i>
                         <span> Components </span>
@@ -144,7 +144,7 @@
                             </li>
                         </ul>
                     </div>
-                </li>
+                </li> --}}
 
 
             </ul>
