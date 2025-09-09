@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\HeroController;
+use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\HomeController;
 
 
@@ -66,5 +67,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/hero/edit','editHero')->name('edit.hero');
         Route::post('/admin/hero/update/{id}', 'updateHero')->name('update.hero');
     });
+
+    Route::controller(ServiceController::class)->group(function()
+    {
+        Route::get('/all/service','AllService' )->name('all.services');
+        Route::get('/add/service','AddService' )->name('add.service');
+        Route::post('/store/service','StoreService' )->name('store.service');
+        Route::get('/edit/service/{id}', 'EditService')->name('edit.service')->whereNumber('id');
+        Route::put('/update/service/{id}', 'UpdateService')->name('update.service');
+        Route::get('/delete/service/{id}','DeleteService' )->name('delete.service');
+    });
+
 
 });

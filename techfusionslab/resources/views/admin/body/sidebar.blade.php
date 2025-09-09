@@ -44,37 +44,57 @@
                 <li class="menu-title">Pages</li>
 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                    <a href="#sidebarReview" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
                         <span> Review Setup</span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse" id="sidebarReview">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('all.review')}}" class="tp-link">All Reviews</a>
+                                <a href="{{ route('all.review') }}" class="tp-link">All Reviews</a>
                             </li>
                             <li>
-                                <a href="{{route('add.review')}}" class="tp-link">Add Review</a>
+                                <a href="{{ route('add.review') }}" class="tp-link">Add Review</a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
                 <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
+                    <a href="#sidebarHero" data-bs-toggle="collapse">
                         <i data-feather="clipboard"></i>
                         <span> Hero Section </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="sidebarHero">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{route('edit.hero')}}" class="tp-link">Edit Hero Section</a>
+                                <a href="{{ route('edit.hero') }}" class="tp-link">Edit Hero Section</a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
+                <li>
+                    <a href="#sidebarService" data-bs-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> Services</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarService">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.services') }}" class="tp-link">All Services</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.service') }}" class="tp-link">Add Service</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
 
 
                 <li class="menu-title mt-2">General</li>
