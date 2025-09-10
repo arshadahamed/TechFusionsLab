@@ -8,8 +8,8 @@
             <h4 class="fw-semibold m-0">Edit Company Information</h4>
         </div>
 
-        @if(session('success'))
-            <div class="alert alert-success mt-2">{{ session('success') }}</div>
+        @if(session('message'))
+            <div class="alert alert-success mt-2">{{ session('message') }}</div>
         @endif
 
         <form action="{{ route('update.info', $company->id) }}" method="POST" enctype="multipart/form-data">
@@ -28,7 +28,7 @@
                     <label class="form-label">White Logo</label>
                     <input type="file" name="white_logo" id="whitelogo" class="form-control">
                     <img id="showWhite"
-                        src="{{ $company->white_logo ? asset('storage/'.$company->white_logo) : asset('backend/assets/images/placeholder.png') }}"
+                        src="{{ $company->white_logo ? asset($company->white_logo) : asset('backend/assets/images/placeholder.png') }}"
                         alt="White Logo" class="mt-2" height="60">
                 </div>
 
@@ -37,7 +37,7 @@
                     <label class="form-label">Dark Logo</label>
                     <input type="file" name="dark_logo" id="darklogo" class="form-control">
                     <img id="showDark"
-                        src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('backend/assets/images/placeholder.png') }}"
+                        src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('backend/assets/images/placeholder.png') }}"
                         alt="Dark Logo" class="mt-2" height="60">
                 </div>
 
@@ -46,7 +46,7 @@
                     <label class="form-label">Favicon</label>
                     <input type="file" name="favicon" id="favicon" class="form-control">
                     <img id="showFavicon"
-                        src="{{ $company->favicon ? asset('storage/'.$company->favicon) : asset('backend/assets/images/placeholder.png') }}"
+                        src="{{ $company->favicon ? asset($company->favicon) : asset('backend/assets/images/placeholder.png') }}"
                         alt="Favicon" class="mt-2" height="40">
                 </div>
 

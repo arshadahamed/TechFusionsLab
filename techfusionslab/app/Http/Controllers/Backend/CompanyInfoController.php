@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CompanyInfo;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File; // For direct file deletion
 use Illuminate\Support\Str;
 
 class CompanyInfoController extends Controller
@@ -33,6 +33,7 @@ class CompanyInfoController extends Controller
             'company_name' => 'nullable|string|max:255',
             'white_logo'   => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
             'dark_logo'    => 'nullable|image|mimes:jpg,jpeg,png,svg|max:2048',
+            'favicon'      => 'nullable|image|mimes:jpg,jpeg,png,svg,ico|max:1024',
             'description'  => 'nullable|string',
             'phone_one'    => 'nullable|string|max:50',
             'phone_two'    => 'nullable|string|max:50',
@@ -44,7 +45,6 @@ class CompanyInfoController extends Controller
             'twitter'      => 'nullable|string|max:255',
             'linkedin'     => 'nullable|string|max:255',
             'youtube'      => 'nullable|string|max:255',
-            'favicon'      => 'nullable|image|mimes:jpg,jpeg,png,svg,ico|max:1024',
             'meta_title'       => 'nullable|string|max:255',
             'meta_description' => 'nullable|string',
             'meta_keywords'    => 'nullable|string',
@@ -52,38 +52,49 @@ class CompanyInfoController extends Controller
             'tiktok'           => 'nullable|string|max:255',
         ]);
 
-        // Handle Logo Uploads
-        if ($request->hasFile('white_logo')) {
-            if ($company->white_logo) {
-                Storage::disk('public')->delete($company->white_logo);
-            }
-            $data['white_logo'] = $request->file('white_logo')->store('logos', 'public');
+        // Create folder if not exists
+        $uploadPath = public_path('upload/logo');
+        if (!File::exists($uploadPath)) {
+            File::makeDirectory($uploadPath, 0755, true);
         }
 
-        if ($request->hasFile('dark_logo')) {
-            if ($company->dark_logo) {
-                Storage::disk('public')->delete($company->dark_logo);
+        // White Logo
+        if ($request->hasFile('white_logo')) {
+            if ($company->white_logo && File::exists(public_path($company->white_logo))) {
+                File::delete(public_path($company->white_logo));
             }
-            $data['dark_logo'] = $request->file('dark_logo')->store('logos', 'public');
+            $whiteName = time().'_white.'.$request->white_logo->getClientOriginalExtension();
+            $request->white_logo->move($uploadPath, $whiteName);
+            $data['white_logo'] = 'upload/logo/'.$whiteName;
+        }
+
+        // Dark Logo
+        if ($request->hasFile('dark_logo')) {
+            if ($company->dark_logo && File::exists(public_path($company->dark_logo))) {
+                File::delete(public_path($company->dark_logo));
+            }
+            $darkName = time().'_dark.'.$request->dark_logo->getClientOriginalExtension();
+            $request->dark_logo->move($uploadPath, $darkName);
+            $data['dark_logo'] = 'upload/logo/'.$darkName;
+        }
+
+        // Favicon
+        if ($request->hasFile('favicon')) {
+            if ($company->favicon && File::exists(public_path($company->favicon))) {
+                File::delete(public_path($company->favicon));
+            }
+            $faviconName = time().'_favicon.'.$request->favicon->getClientOriginalExtension();
+            $request->favicon->move($uploadPath, $faviconName);
+            $data['favicon'] = 'upload/logo/'.$faviconName;
         }
 
         $data['slug'] = Str::slug($request->company_name, '-');
 
-        if ($request->hasFile('favicon')) {
-            if ($company->favicon) {
-                Storage::disk('public')->delete($company->favicon);
-            }
-            $data['favicon'] = $request->file('favicon')->store('logos', 'public');
-        }
-
         $company->update($data);
 
-        $notification = array(
+        return redirect()->route('edit.info')->with([
             'message' => 'Company information updated successfully!',
             'alert-type' => 'success'
-        );
-
-        return redirect()->route('edit.info')->with($notification);
-
+        ]);
     }
 }

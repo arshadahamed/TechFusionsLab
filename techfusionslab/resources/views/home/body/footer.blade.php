@@ -55,9 +55,9 @@
                                 </div>
                             </form>
                             <div class="social-list">
-                                <a href="#">Instagram</a>
-                                <a href="#">Facebook</a>
-                                <a href="#">linkedin</a>
+                                <a href="{{ $company->instagram }}">Instagram</a>
+                                <a href="{{ $company->facebook }}">Facebook</a>
+                                <a href="{{ $company->linkedin }}">linkedin</a>
                             </div>
                         </div>
                     </div>
@@ -110,16 +110,16 @@
                             <div class="col-xl-6 col-lg-4 col-md-4 wow fadeInUp" data-wow-delay=".7s">
                                 <div class="gt-footer-single-items">
                                     <div class="gt-widget-title">
-                                        <h4>ADDRESS UK</h4>
+                                        <h4>{{ $company->company_name }}</h4>
                                     </div>
                                     <div class="footer-contact-content">
                                         <p>
-                                            5 Warham Road, Harrow,<br> England.
+                                            {{ $company->address }}
                                         </p>
                                         <ul class="contact-list">
                                             <li>
                                                 <i class="fa-solid fa-square-chevron-down"></i>
-                                                <a href="mailto:info@moderntrading.co.uk">info@moderntrading.co.uk</a>
+                                                <a href="mailto:{{ $company->email_one }}">{{ $company->email_one }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -128,7 +128,9 @@
                         </div>
                         <div class="gt-footer-bottom wow img_full img_right_animation">
                             <a href="https://www.arshadahamed.com">
-                                <img src="{{ asset('frontend/assets/img/logo/white-logo.png') }}" alt="img">
+                                <img src="{{ $company->black_logo ? asset('storage/' . $company->black_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
+                                alt="logo-img">
+
                             </a>
                             <p>
                                 Copyright ©
