@@ -166,10 +166,10 @@
                                 </li>
                             </ul>
                             <div class="social-icon d-flex align-items-center">
-                                <a href="{{ $company->facebook ?? '#' }}"><i class="fab fa-facebook-f"></i></a>
-                                <a href="{{ $company->twitter ?? '#' }}"><i class="fab fa-twitter"></i></a>
-                                <a href="{{ $company->youtube ?? '#' }}"><i class="fab fa-youtube"></i></a>
-                                <a href="{{ $company->linkedin ?? '#' }}"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{ $company->facebook ?? '#' }}" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ $company->twitter ?? '#' }}" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="{{ $company->youtube ?? '#' }}" target="_blank"><i class="fab fa-youtube"></i></a>
+                                <a href="{{ $company->linkedin ?? '#' }}" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>

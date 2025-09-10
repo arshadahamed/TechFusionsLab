@@ -7,18 +7,18 @@
             <div class="logo-box">
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="22">
+                        <img src="{{ asset($company->dark_logo) }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="24">
+                        <img src="{{ asset($company->dark_logo) }}" alt="" height="24">
                     </span>
                 </a>
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="22">
+                        <img src="{{ asset($company->dark_logo) }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="24">
+                        <img src="{{ asset($company->dark_logo) }}" alt="" height="24">
                     </span>
                 </a>
             </div>

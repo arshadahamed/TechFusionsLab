@@ -5,7 +5,7 @@
                 &copy;
                 <script>
                     document.write(new Date().getFullYear())
-                </script> - Made with <span class="mdi mdi-heart text-danger"></span> by <a href="#!"
+                </script> - Made with <span class="mdi mdi-heart text-danger"></span> by <a href="https://egrow.lk" target="_blank"
                     class="text-reset fw-semibold">Arshad Ahmed</a>
             </div>
         </div>

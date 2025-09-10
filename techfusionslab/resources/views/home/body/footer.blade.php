@@ -55,9 +55,9 @@
                                 </div>
                             </form>
                             <div class="social-list">
-                                <a href="{{ $company->instagram }}">Instagram</a>
-                                <a href="{{ $company->facebook }}">Facebook</a>
-                                <a href="{{ $company->linkedin }}">linkedin</a>
+                                <a href="{{ $company->instagram }}" target="_blank">Instagram</a>
+                                <a href="{{ $company->facebook }}" target="_blank">Facebook</a>
+                                <a href="{{ $company->linkedin }}" target="_blank">linkedin</a>
                             </div>
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                             </a>
                             <p>
                                 Copyright ©
-                                <a href="https://www.arshadahamed.com" style="color: white; margin-left: 4px; margin-right: 4px;">Arshad Ahamed</a>
+                                <a href="https://egrow.lk" target="_blank" style="color: white; margin-left: 4px; margin-right: 4px;">Arshad Ahamed</a>
                                 All Rights Reserved.
                             </p>
 

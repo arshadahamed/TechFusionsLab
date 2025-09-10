@@ -106,10 +106,10 @@
                          </a>
 
                          <!-- item-->
-                         <a href="auth-lock-screen.html" class="dropdown-item notify-item">
+                         {{-- <a href="auth-lock-screen.html" class="dropdown-item notify-item">
                              <i class="mdi mdi-lock-outline fs-16 align-middle"></i>
                              <span>Lock Screen</span>
-                         </a>
+                         </a> --}}
 
                          <div class="dropdown-divider"></div>
 
