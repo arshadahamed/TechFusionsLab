@@ -1,17 +1,38 @@
+@php
+    use App\Models\CompanyInfo;
+    $company = CompanyInfo::first();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
-    <!--<< Header Area >>-->
     <head>
-       <!-- ========== Meta Tags ========== -->
+        <!-- ========== Meta Tags ========== -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="ArshaD">
-        <meta name="description" content="Modern Trading and Services LLP – Corporate Business Consulting | Harrow, London">
+        <meta name="author" content="Arshad Ahamed">
+        <meta name="description" content="{{ $company->meta_description ?? $company->description ?? 'Default Company Description' }}">
+        <meta name="keywords" content="{{ $company->meta_keywords ?? 'tech, software, solutions' }}">
+
         <!-- ======== Page title ============ -->
-        <title>Modern Trading and Services LLP – Corporate Business Consulting | Harrow, London</title>
-        <!--<< Favcion >>-->
-        <link rel="shortcut icon" href="{{ asset('frontend/assets/img/favicon.png') }}">
+        <title>{{ $company->meta_title ?? $company->company_name ?? 'Default Company Name' }}</title>
+
+        <!-- Dynamic Favicon -->
+        @if($company && $company->favicon)
+            <link rel="shortcut icon" href="{{ asset('storage/'.$company->favicon) }}">
+        @endif
+
+        <!-- Open Graph (FB/LinkedIn) -->
+        <meta property="og:title" content="{{ $company->meta_title ?? $company->company_name }}">
+        <meta property="og:description" content="{{ $company->meta_description ?? $company->description }}">
+        <meta property="og:image" content="{{ $company && $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/default-og.png') }}">
+        <meta property="og:url" content="{{ url()->current() }}">
+
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{ $company->meta_title ?? $company->company_name }}">
+        <meta name="twitter:description" content="{{ $company->meta_description ?? $company->description }}">
+        <meta name="twitter:image" content="{{ $company && $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/default-twitter.png') }}">
+
         <!--<< Bootstrap min.css') }} >>-->
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
         <!--<< All Min Css >>-->
@@ -105,7 +126,7 @@
                             </div>
                         </div>
                         <p class="text d-none d-xl-block">
-                            Nullam dignissim, ante scelerisque the  is euismod fermentum odio sem semper the is erat, a feugiat leo urna eget eros. Duis Aenean a imperdiet risus.
+                            {{ $company->description ?? 'Default Company Description' }}
                         </p>
                         <div class="mobile-menu fix mb-3"></div>
                         <div class="offcanvas__contact d-xl-block">
@@ -116,7 +137,7 @@
                                         <i class="fal fa-map-marker-alt"></i>
                                     </div>
                                     <div class="offcanvas__contact-text">
-                                        <a target="_blank" href="#">5 Warham Road, Harrow, England, HA3 7JE</a>
+                                        <a target="_blank" href="#">{{ $company->address ?? 'Default Company Address' }}</a>
                                     </div>
                                 </li>
                                 <li class="d-flex align-items-center">
@@ -124,7 +145,7 @@
                                         <i class="fal fa-envelope"></i>
                                     </div>
                                     <div class="offcanvas__contact-text">
-                                        <a href="mailto:info@moderntrading.co.uk"><span class="mailto:info@moderntrading.co.uk">info@moderntrading.co.uk</span></a>
+                                        <a href="mailto:info@moderntrading.co.uk"><span class="mailto:info@moderntrading.co.uk">{{$company->email_one ?? 'Default Email'}}</span></a>
                                     </div>
                                 </li>
                                 <li class="d-flex align-items-center">
@@ -140,15 +161,15 @@
                                         <i class="far fa-phone"></i>
                                     </div>
                                     <div class="offcanvas__contact-text">
-                                        <a href="tel:+02080587635">+02080587635</a>
+                                        <a href="tel:{{ $company->phone_one ?? 'Default Phone Number' }}">{{ $company->phone_one ?? 'Default Phone Number' }}</a>
                                     </div>
                                 </li>
                             </ul>
                             <div class="social-icon d-flex align-items-center">
-                                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="{{ $company->facebook ?? '#' }}"><i class="fab fa-facebook-f"></i></a>
+                                <a href="{{ $company->twitter ?? '#' }}"><i class="fab fa-twitter"></i></a>
+                                <a href="{{ $company->youtube ?? '#' }}"><i class="fab fa-youtube"></i></a>
+                                <a href="{{ $company->linkedin ?? '#' }}"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
                     </div>

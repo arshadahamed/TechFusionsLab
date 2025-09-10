@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\ReviewController;
 use App\Http\Controllers\Backend\HeroController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Backend\CompanyInfoController;
 
 
 // Homepage
@@ -76,6 +77,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/service/{id}', 'EditService')->name('edit.service')->whereNumber('id');
         Route::put('/update/service/{id}', 'UpdateService')->name('update.service');
         Route::get('/delete/service/{id}','DeleteService' )->name('delete.service');
+    });
+
+
+    Route::controller(CompanyInfoController::class)->group(function()
+    {
+        Route::get('/admin/company/edit','editCompany')->name('edit.info');
+        Route::post('/admin/company/update/{id}', 'updateCompany')->name('update.info');
     });
 
 

@@ -97,7 +97,21 @@
 
 
 
-                <li class="menu-title mt-2">General</li>
+                <li class="menu-title mt-2">Settings</li>
+                    <li>
+                        <a href="#sidebarInfo" data-bs-toggle="collapse">
+                            <i data-feather="users"></i>
+                            <span> Company Info</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarInfo">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('edit.info') }}" class="tp-link">Edit Company Info</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
 
                 {{-- <li>
                     <a href="#sidebarBaseui" data-bs-toggle="collapse">
