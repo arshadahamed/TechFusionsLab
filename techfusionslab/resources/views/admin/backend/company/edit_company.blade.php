@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <div class="content">
     <div class="container-xxl">
@@ -15,6 +16,7 @@
             @csrf
 
             <div class="row">
+
                 <!-- Company Name -->
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Company Name</label>
@@ -24,28 +26,28 @@
                 <!-- White Logo -->
                 <div class="col-md-6 mb-3">
                     <label class="form-label">White Logo</label>
-                    <input type="file" name="white_logo" class="form-control">
-                    @if($company->white_logo)
-                        <img src="{{ asset('storage/'.$company->white_logo) }}" alt="White Logo" class="mt-2" height="60">
-                    @endif
+                    <input type="file" name="white_logo" id="whitelogo" class="form-control">
+                    <img id="showWhite"
+                        src="{{ $company->white_logo ? asset('storage/'.$company->white_logo) : asset('backend/assets/images/placeholder.png') }}"
+                        alt="White Logo" class="mt-2" height="60">
                 </div>
 
                 <!-- Dark Logo -->
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Dark Logo</label>
-                    <input type="file" name="dark_logo" class="form-control">
-                    @if($company->dark_logo)
-                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="Dark Logo" class="mt-2" height="60">
-                    @endif
+                    <input type="file" name="dark_logo" id="darklogo" class="form-control">
+                    <img id="showDark"
+                        src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('backend/assets/images/placeholder.png') }}"
+                        alt="Dark Logo" class="mt-2" height="60">
                 </div>
 
                 <!-- Favicon -->
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Favicon</label>
-                    <input type="file" name="favicon" class="form-control">
-                    @if($company->favicon)
-                        <img src="{{ asset('storage/'.$company->favicon) }}" alt="Favicon" class="mt-2" height="40">
-                    @endif
+                    <input type="file" name="favicon" id="favicon" class="form-control">
+                    <img id="showFavicon"
+                        src="{{ $company->favicon ? asset('storage/'.$company->favicon) : asset('backend/assets/images/placeholder.png') }}"
+                        alt="Favicon" class="mt-2" height="40">
                 </div>
 
                 <!-- Slug -->
@@ -64,10 +66,9 @@
                     <textarea name="meta_description" rows="2" class="form-control">{{ old('meta_description', $company->meta_description) }}</textarea>
                 </div>
                 <div class="col-md-12 mb-3">
-                    <label class="form-label">Meta Keywords (comma separated)</label>
+                    <label class="form-label">Meta Keywords</label>
                     <textarea name="meta_keywords" rows="2" class="form-control">{{ old('meta_keywords', $company->meta_keywords) }}</textarea>
                 </div>
-
 
                 <!-- Description -->
                 <div class="col-md-12 mb-3">
@@ -75,7 +76,7 @@
                     <textarea name="description" rows="4" class="form-control">{{ old('description', $company->description) }}</textarea>
                 </div>
 
-                <!-- Contact Details -->
+                <!-- Contact -->
                 <div class="col-md-6 mb-3">
                     <label class="form-label">Phone One</label>
                     <input type="text" name="phone_one" class="form-control" value="{{ old('phone_one', $company->phone_one) }}">
@@ -131,6 +132,7 @@
                     <label class="form-label">TikTok</label>
                     <input type="text" name="tiktok" class="form-control" value="{{ old('tiktok', $company->tiktok) }}">
                 </div>
+
             </div>
 
             <button type="submit" class="btn btn-primary mt-3">Update</button>
@@ -138,4 +140,21 @@
     </div>
 </div>
 
+<script type="text/javascript">
+$(document).ready(function() {
+    function previewImage(input, imgID) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $(imgID).attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#whitelogo').change(function() { previewImage(this, '#showWhite'); });
+    $('#darklogo').change(function() { previewImage(this, '#showDark'); });
+    $('#favicon').change(function() { previewImage(this, '#showFavicon'); });
+});
+</script>
 @endsection

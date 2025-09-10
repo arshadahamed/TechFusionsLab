@@ -7,18 +7,18 @@
             <div class="logo-box">
                 <a href="index.html" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('backend/assets/images/logo.png') }}" alt="" height="22">
+                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('backend/assets/images/logo.png') }}" alt="" height="24">
+                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="24">
                     </span>
                 </a>
                 <a href="index.html" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('backend/assets/images/logo.png') }}" alt="" height="22">
+                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('backend/assets/images/logo.png') }}" alt="" height="24">
+                        <img src="{{ asset('storage/'.$company->dark_logo) }}" alt="" height="24">
                     </span>
                 </a>
             </div>
@@ -45,7 +45,7 @@
 
                 <li>
                     <a href="#sidebarReview" data-bs-toggle="collapse">
-                        <i data-feather="users"></i>
+                        <i data-feather="star"></i>
                         <span> Review Setup</span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -63,7 +63,7 @@
 
                 <li>
                     <a href="#sidebarHero" data-bs-toggle="collapse">
-                        <i data-feather="clipboard"></i>
+                        <i data-feather="film"></i>
                         <span> Hero Section </span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -100,7 +100,7 @@
                 <li class="menu-title mt-2">Settings</li>
                     <li>
                         <a href="#sidebarInfo" data-bs-toggle="collapse">
-                            <i data-feather="users"></i>
+                            <i data-feather="home"></i>
                             <span> Company Info</span>
                             <span class="menu-arrow"></span>
                         </a>
