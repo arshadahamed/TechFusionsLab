@@ -29,6 +29,9 @@ Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact', [FrontendController::class, 'sendContact'])->name('contact.send');
 
 
+Route::get('/notifications', [App\Http\Controllers\FrontendController::class, 'getNotifications'])->name('notifications.get');
+
+
 
 
 
@@ -119,5 +122,11 @@ Route::middleware('auth')->group(function () {
     });
 
 
+
+
+});
+
+Route::fallback(function () {
+    return response()->view('home.errors.404', [], 404);
 });
 
