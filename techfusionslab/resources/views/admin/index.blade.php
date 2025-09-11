@@ -61,24 +61,45 @@
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
+                                    <!-- Title -->
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-14 mb-1">Conversion rate</div>
+                                        <div class="fs-14 mb-1">Total Emails</div>
                                     </div>
 
+                                    <!-- Count & Trend -->
                                     <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black">15%</div>
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black">
+                                            {{ \App\Models\Contact::count() }}
+                                        </div>
                                         <div class="me-auto">
-                                            <span class="text-danger d-inline-flex align-items-center">
-                                                10%
-                                                <i data-feather="trending-down" class="ms-1"
-                                                    style="height: 22px; width: 22px;"></i>
+                                            <span class="text-success d-inline-flex align-items-center">
+                                                @php
+                                                    $current = \App\Models\Contact::whereMonth(
+                                                        'created_at',
+                                                        now()->month,
+                                                    )->count();
+                                                    $previous = \App\Models\Contact::whereMonth(
+                                                        'created_at',
+                                                        now()->subMonth()->month,
+                                                    )->count();
+                                                    $percent =
+                                                        $previous > 0
+                                                            ? round((($current - $previous) / $previous) * 100)
+                                                            : 0;
+                                                @endphp
+                                                {{ $percent }}%
+                                                <i data-feather="{{ $percent >= 0 ? 'trending-up' : 'trending-down' }}"
+                                                    class="ms-1" style="height: 22px; width: 22px;"></i>
                                             </span>
                                         </div>
                                     </div>
-                                    <div id="conversion-visitors" class="apex-charts"></div>
+
+                                    <!-- Chart -->
+                                    <div id="review-stats-chart" class="apex-charts" style="height: 45px;"></div>
                                 </div>
                             </div>
                         </div>
+
 
                         <div class="col-md-6 col-xl-3">
                             <div class="card">

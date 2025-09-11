@@ -78,7 +78,7 @@
 
                 <li>
                     <a href="#sidebarService" data-bs-toggle="collapse">
-                        <i data-feather="users"></i>
+                        <i data-feather="briefcase"></i>
                         <span> Services</span>
                         <span class="menu-arrow"></span>
                     </a>
@@ -125,6 +125,21 @@
                             <ul class="nav-second-level">
                                 <li>
                                     <a href="{{ route('edit.info') }}" class="tp-link">Edit Company Info</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="#sidebarMail" data-bs-toggle="collapse">
+                            <i data-feather="mail"></i>
+                            <span> Emails</span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="sidebarMail">
+                            <ul class="nav-second-level">
+                                <li>
+                                    <a href="{{ route('emails') }}" class="tp-link">All Emails</a>
                                 </li>
                             </ul>
                         </div>

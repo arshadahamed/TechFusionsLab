@@ -70,20 +70,18 @@
                                     <div class="gt-widget-title">
                                         <h4>SERVICES</h4>
                                     </div>
+                                    @php
+                                        $services = App\Models\Service::orderBy('number', 'asc')->take(4)->get();
+                                    @endphp
+
                                     <ul class="gt-list-items">
-                                        <li>
-                                            <a href="service-details.html">Strategic Business Planning</a>
-                                        </li>
-                                        <li>
-                                            <a href="service-details.html">Sales & Marketing Strategy</a>
-                                        </li>
-                                        <li>
-                                            <a href="service-details.html">Change Management</a>
-                                        </li>
-                                        <li>
-                                            <a href="service-details.html">Business Model Innovation</a>
-                                        </li>
+                                        @foreach ($services as $service)
+                                            <li>
+                                                <a href="{{ $service->link ?? '#' }}">{{ $service->title }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
+
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 col-md-4 wow fadeInUp" data-wow-delay=".5s">
@@ -93,16 +91,16 @@
                                     </div>
                                     <ul class="gt-list-items">
                                         <li>
-                                            <a href="about.html">About Us</a>
+                                            <a href="{{ route('about') }}">About Us</a>
                                         </li>
                                         <li>
-                                            <a href="service-details.html">Services</a>
+                                            <a href="{{ route('service') }}">Services</a>
                                         </li>
                                         <li>
-                                            <a href="pricing.html">Pricing</a>
+                                            <a href="{{ route('our.team') }}">Our Team</a>
                                         </li>
                                         <li>
-                                            <a href="news-details.html">Articles & Blog</a>
+                                            <a href="{{ route('contact') }}">Contact Us</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -119,7 +117,8 @@
                                         <ul class="contact-list">
                                             <li>
                                                 <i class="fa-solid fa-square-chevron-down"></i>
-                                                <a href="mailto:{{ $company->email_one }}">{{ $company->email_one }}</a>
+                                                <a
+                                                    href="mailto:{{ $company->email_one }}">{{ $company->email_one }}</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -129,12 +128,13 @@
                         <div class="gt-footer-bottom wow img_full img_right_animation">
                             <a href="https://www.arshadahamed.com">
                                 <img src="{{ $company->black_logo ? asset('storage/' . $company->black_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
-                                alt="logo-img">
+                                    alt="logo-img">
 
                             </a>
                             <p>
                                 Copyright ©
-                                <a href="https://egrow.lk" target="_blank" style="color: white; margin-left: 4px; margin-right: 4px;">Arshad Ahamed</a>
+                                <a href="https://egrow.lk" target="_blank"
+                                    style="color: white; margin-left: 4px; margin-right: 4px;">Arshad Ahamed</a>
                                 All Rights Reserved.
                             </p>
 

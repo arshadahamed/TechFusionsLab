@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\CompanyInfoController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\Backend\EmailController;
 use App\Http\Controllers\FrontendController;
 
 
@@ -18,6 +19,15 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/login', [HomeController::class, 'showLogin'])->name('login');
 
 Route::get('/team', [FrontendController::class, 'team'])->name('our.team');
+
+Route::get('/about', [FrontendController::class, 'about'])->name('about');
+
+Route::get('/service', [FrontendController::class, 'service'])->name('service');
+
+Route::get('/contact', [FrontendController::class, 'contact'])->name('contact');
+
+Route::post('/contact', [FrontendController::class, 'sendContact'])->name('contact.send');
+
 
 
 
@@ -97,6 +107,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
         Route::put('/update/team/{id}', 'UpdateTeam')->name('update.team');
         Route::get('/delete/team/{id}','DeleteTeam')->name('delete.team');
+    });
+
+     Route::controller(EmailController::class)->group(function()
+    {
+        Route::get('/all/email','AllEmails' )->name('emails');
+        Route::get('/delete/email/{id}','DeleteEmail' )->name('delete.email');
+
     });
 
 

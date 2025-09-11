@@ -8,11 +8,11 @@
                     <div class="logo">
                         <a href="{{ route('home') }}" class="header-logo">
                             <img src="{{ $company->white_logo ? asset($company->white_logo) : asset('frontend/assets/img/logo/white-logo.png') }}"
-                                 alt="White Logo">
+                                alt="White Logo">
                         </a>
                         <a href="{{ route('home') }}" class="header-logo-2">
                             <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
-                                 alt="Dark Logo">
+                                alt="Dark Logo">
                         </a>
                     </div>
                 </div>
@@ -25,22 +25,32 @@
                         <div class="main-menu">
                             <nav id="mobile-menu">
                                 <ul>
-                                    <li class="active menu-thumb">
+                                    <li class="{{ request()->routeIs('home') ? 'active' : '' }} menu-thumb">
                                         <a href="{{ route('home') }}">Home</a>
                                     </li>
-                                    <li class="active d-xl-none">
-                                        <a href="{{ route('home') }}" class="border-none">Home</a>
+                                    <li class="{{ request()->routeIs('our.team') ? 'active' : '' }}">
+                                        <a href="{{ route('our.team') }}">Team</a>
                                     </li>
-                                    <li><a href="">About Us</a></li>
-                                    <li><a href="{{ route('our.team') }}">Team</a></li>
-                                    <li><a href="">Service</a></li>
-                                    <li><a href="">Contact Us</a></li>
+                                    <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
+                                        <a href="{{ route('about') }}">About Us</a>
+                                    </li>
+                                    <li class="{{ request()->routeIs('service') ? 'active' : '' }}">
+                                        <a href="{{ route('service') }}">Service</a>
+                                    </li>
+                                    <li class="{{ request()->routeIs('contact') ? 'active' : '' }}">
+                                        <a href="{{ route('contact') }}">Contact Us</a>
+                                    </li>
                                     @auth
-                                        <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                        <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                                        </li>
                                     @else
-                                        <li><a href="{{ route('login') }}">Login</a></li>
+                                        <li class="{{ request()->routeIs('login') ? 'active' : '' }}">
+                                            <a href="{{ route('login') }}">Login</a>
+                                        </li>
                                     @endauth
                                 </ul>
+
                             </nav>
                         </div>
                     </div>
@@ -55,8 +65,9 @@
                                 <span>Call for Inquiry</span>
                                 <h3>
                                     <a href="tel:{{ $company->phone_one }}">{{ $company->phone_one }}</a>
-                                    @if($company->phone_two)
-                                        <span> / <a href="tel:{{ $company->phone_two }}">{{ $company->phone_two }}</a></span>
+                                    @if ($company->phone_two)
+                                        <span> / <a
+                                                href="tel:{{ $company->phone_two }}">{{ $company->phone_two }}</a></span>
                                     @endif
                                 </h3>
                             </div>
