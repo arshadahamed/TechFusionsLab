@@ -72,7 +72,7 @@
                     <span data-text-preloader="E" class="letters-loading">
                         E
                     </span>
-                    <span data-text-preloader="E" class="letters-loading">
+                    <span data-text-preloader="R" class="letters-loading">
                         R
                     </span>
                      <span data-text-preloader="N" class="letters-loading">
