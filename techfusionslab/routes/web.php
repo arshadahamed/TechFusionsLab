@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\HeroController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\CompanyInfoController;
+use App\Http\Controllers\Backend\TeamController;
 
 
 // Homepage
@@ -84,6 +85,15 @@ Route::middleware('auth')->group(function () {
     {
         Route::get('/admin/company/edit','editCompany')->name('edit.info');
         Route::post('/admin/company/update/{id}', 'updateCompany')->name('update.info');
+    });
+
+    Route::controller(TeamController::class)->group(function() {
+        Route::get('/all/team','AllTeam')->name('all.team');
+        Route::get('/add/team','AddTeam')->name('add.team');
+        Route::post('/store/team','StoreTeam')->name('store.team');
+        Route::get('/edit/team/{id}','EditTeam')->name('edit.team');
+        Route::put('/update/team/{id}', 'UpdateTeam')->name('update.team');
+        Route::get('/delete/team/{id}','DeleteTeam')->name('delete.team');
     });
 
 

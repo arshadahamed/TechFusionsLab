@@ -78,7 +78,7 @@ class HeroController extends Controller
 
         $hero->update($data);
 
-         $notification = array(
+        $notification = array(
             'message' => 'Hero Section Updated Successfully',
             'alert-type' => 'success'
         );
