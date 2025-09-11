@@ -32,8 +32,8 @@
                                         <a href="{{ route('home') }}" class="border-none">Home</a>
                                     </li>
                                     <li><a href="">About Us</a></li>
-                                    <li><a href="">Team</a></li>
-                                    <li><a href="{">Service</a></li>
+                                    <li><a href="{{ route('our.team') }}">Team</a></li>
+                                    <li><a href="">Service</a></li>
                                     <li><a href="">Contact Us</a></li>
                                     @auth
                                         <li><a href="{{ route('dashboard') }}">Dashboard</a></li>

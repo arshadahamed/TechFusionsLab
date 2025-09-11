@@ -9,12 +9,15 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Backend\CompanyInfoController;
 use App\Http\Controllers\Backend\TeamController;
+use App\Http\Controllers\FrontendController;
 
 
 // Homepage
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [HomeController::class, 'showLogin'])->name('login');
+
+Route::get('/team', [FrontendController::class, 'team'])->name('our.team');
 
 
 
@@ -98,3 +101,4 @@ Route::middleware('auth')->group(function () {
 
 
 });
+

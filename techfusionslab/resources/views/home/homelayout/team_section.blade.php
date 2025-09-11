@@ -27,7 +27,7 @@
                                     <img src="{{ asset($team->image ?? 'frontend/assets/img/home-1/team/default.jpg') }}" alt="img">
                                     <div class="gt-team-content">
                                         <h4>
-                                            <a href="team-details.html">{{ $team->name }}</a>
+                                            <a href="{{route('our.team')}}">{{ $team->name }}</a>
                                         </h4>
                                         <p>{{ $team->position }}</p>
                                     </div>
