@@ -3,14 +3,16 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Log In Page | techFusionsLab </title>
+        <title>{{ $company->meta_title ?? $company->company_name ?? 'Admin Dashboard' }} | TechFusionsLab</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
-        <meta name="author" content="Arshad Ahamed"/>
+        <meta name="description" content="{{ $company->meta_description ?? 'Admin panel for managing site settings.' }}"/>
+        <meta name="author" content="TechFusionsLab"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="{{ asset('backend/assets/images/fav-logo.png') }}">
+         @if($company && $company->favicon)
+            <link rel="icon" type="image/png" href="{{ asset($company->favicon) }}">
+        @endif
 
         <!-- App css -->
         <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
