@@ -113,6 +113,8 @@ Route::middleware('auth')->group(function () {
     {
         Route::get('/all/email','AllEmails' )->name('emails');
         Route::get('/delete/email/{id}','DeleteEmail' )->name('delete.email');
+        Route::get('/email/clear-all', 'ClearAll')->name('email.clearAll');
+
 
     });
 

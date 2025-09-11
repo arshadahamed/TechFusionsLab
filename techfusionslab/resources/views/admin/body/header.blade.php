@@ -29,16 +29,57 @@
                          <i data-feather="globe" class="align-middle globe noti-icon"></i>
                      </button>
                  </li>
-
+                  @php
+                     $notifications = App\Models\Contact::where('is_read', false)->latest()->take(5)->get();
+                  @endphp
                  <li class="dropdown notification-list topbar-dropdown">
                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                          aria-haspopup="false" aria-expanded="false">
                          <i data-feather="bell" class="noti-icon"></i>
-                         <span class="badge bg-danger rounded-circle noti-icon-badge">1</span>
+                         <span class="badge bg-danger rounded-circle noti-icon-badge">{{ $notifications->count() }}</span>
                      </a>
                      <div class="dropdown-menu dropdown-menu-end dropdown-lg">
 
                          <!-- item-->
+
+
+                         <div class="dropdown-item noti-title">
+                             <h5 class="m-0">
+                                 <span class="float-end">
+                                     <a href="{{ route('email.clearAll') }}" class="text-dark">
+                                         <small>Clear All</small>
+                                     </a>
+                                 </span>
+                                 Notification
+                             </h5>
+                         </div>
+
+                         <div class="noti-scroll" data-simplebar>
+                             @forelse($notifications as $contact)
+                                 <a href="javascript:void(0);"
+                                     class="dropdown-item notify-item text-muted link-primary active">
+                                     <div class="notify-icon">
+                                         <img src="{{ asset('backend/assets/images/users/user-12.jpg') }}"
+                                             class="img-fluid rounded-circle" alt="" />
+                                     </div>
+                                     <div class="d-flex align-items-center justify-content-between">
+                                         <p class="notify-details">{{ $contact->name }}</p>
+                                         <small class="text-muted">{{ $contact->created_at->diffForHumans() }}</small>
+                                     </div>
+                                     <p class="mb-0 user-msg">
+                                         <small class="fs-14">{{ $contact->message }}</small>
+                                     </p>
+                                 </a>
+                             @empty
+                                 <p class="text-center text-muted">No new notifications</p>
+                             @endforelse
+                         </div>
+
+                         <a href="{{ route('emails') }}"
+                             class="dropdown-item text-center text-primary notify-item notify-all">
+                             View all
+                             <i class="fe-arrow-right"></i>
+                         </a>
 
 
                      </div>

@@ -11,7 +11,7 @@
 
         <!-- Dynamic Favicon -->
         @if($company && $company->favicon)
-            <link rel="shortcut icon" href="{{ asset('storage/'.$company->favicon) }}">
+            <link rel="icon" type="image/png" href="{{ asset($company->favicon) }}">
         @endif
 
 

@@ -20,4 +20,12 @@ class EmailController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    public function ClearAll() {
+        Contact::where('is_read', false)->update(['is_read' => true]);
+        $notification = array(
+            'message' => 'All Emails Marked as Read',
+            'alert-type' => 'success'
+        );
+        return back()->with($notification);
+    }
 }

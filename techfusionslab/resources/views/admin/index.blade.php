@@ -16,15 +16,14 @@
                 <div class="col-md-12 col-xl-12">
                     <div class="row g-3">
 
+                        <!-- Total Reviews -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- Title -->
                                     <div class="d-flex align-items-center">
                                         <div class="fs-14 mb-1">Total Reviews</div>
                                     </div>
 
-                                    <!-- Count & Trend -->
                                     <div class="d-flex align-items-baseline mb-2">
                                         <div class="fs-22 mb-0 me-2 fw-semibold text-black">
                                             {{ \App\Models\Review::count() }}
@@ -52,21 +51,19 @@
                                         </div>
                                     </div>
 
-                                    <!-- Chart -->
                                     <div id="review-stats-chart" class="apex-charts" style="height: 45px;"></div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- Total Emails -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
-                                    <!-- Title -->
                                     <div class="d-flex align-items-center">
                                         <div class="fs-14 mb-1">Total Emails</div>
                                     </div>
 
-                                    <!-- Count & Trend -->
                                     <div class="d-flex align-items-baseline mb-2">
                                         <div class="fs-22 mb-0 me-2 fw-semibold text-black">
                                             {{ \App\Models\Contact::count() }}
@@ -94,233 +91,237 @@
                                         </div>
                                     </div>
 
-                                    <!-- Chart -->
-                                    <div id="review-stats-chart" class="apex-charts" style="height: 45px;"></div>
+                                    <div id="email-stats-chart" class="apex-charts" style="height: 45px;"></div>
                                 </div>
                             </div>
                         </div>
 
-
+                        <!-- Team Members -->
                         <div class="col-md-6 col-xl-3">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="d-flex align-items-center">
-                                        <div class="fs-14 mb-1">Session duration</div>
+                                        <div class="fs-14 mb-1">Team Members</div>
                                     </div>
 
                                     <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black">90 Sec</div>
+                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black">{{ \App\Models\Team::count() }}
+                                        </div>
                                         <div class="me-auto">
                                             <span class="text-success d-inline-flex align-items-center">
-                                                25%
-                                                <i data-feather="trending-up" class="ms-1"
-                                                    style="height: 22px; width: 22px;"></i>
+                                                @php
+                                                    $current = \App\Models\Team::whereMonth(
+                                                        'created_at',
+                                                        now()->month,
+                                                    )->count();
+                                                    $previous = \App\Models\Team::whereMonth(
+                                                        'created_at',
+                                                        now()->subMonth()->month,
+                                                    )->count();
+                                                    $percent =
+                                                        $previous > 0
+                                                            ? round((($current - $previous) / $previous) * 100)
+                                                            : 0;
+                                                @endphp
+                                                {{ $percent }}%
+                                                <i data-feather="{{ $percent >= 0 ? 'trending-up' : 'trending-down' }}"
+                                                    class="ms-1" style="height: 22px; width: 22px;"></i>
                                             </span>
                                         </div>
                                     </div>
-                                    <div id="session-visitors" class="apex-charts"></div>
+                                    <div id="teammembers" class="apex-charts"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6 col-xl-3">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-flex align-items-center">
-                                        <div class="fs-14 mb-1">Active Users</div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title mb-0">Email List</h5>
+                                    </div><!-- end card header -->
+
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <table class="table mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Message</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    use Illuminate\Support\Str;
+                                                    $emails = \App\Models\Contact::latest()->take(5)->get();
+                                                @endphp
+                                               @foreach ( $emails as $key=> $item )
+                                                    <tr>
+                                                        <td>{{$key+1}}</td>
+                                                        <td>{{ $item->name }}</td>
+                                                        <td>{{ $item->email }}</td>
+                                                        <td>{{ Str::limit($item->message, 50,'...') }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                    <div class="d-flex align-items-baseline mb-2">
-                                        <div class="fs-22 mb-0 me-2 fw-semibold text-black">2,986</div>
-                                        <div class="me-auto">
-                                            <span class="text-success d-inline-flex align-items-center">
-                                                4%
-                                                <i data-feather="trending-up" class="ms-1"
-                                                    style="height: 22px; width: 22px;"></i>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div id="active-users" class="apex-charts"></div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div> <!-- end sales -->
-            </div> <!-- end row -->
 
-            <!-- Start Monthly Sales -->
-            <div class="row">
-                <div class="col-md-6 col-xl-8">
-                    <div class="card">
 
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <div class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                    <i data-feather="bar-chart" class="widgets-icons"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Monthly Sales</h5>
-                            </div>
-                        </div>
-
-                        <div class="card-body">
-                            <div id="monthly-sales" class="apex-charts"></div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-4">
-                    <div class="card overflow-hidden">
-
-                        <div class="card-header">
-                            <div class="d-flex align-items-center">
-                                <div class="border border-dark rounded-2 me-2 widget-icons-sections">
-                                    <i data-feather="tablet" class="widgets-icons"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Best Traffic Source</h5>
-                            </div>
-                        </div>
-
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table table-traffic mb-0">
-                                    <tbody>
-                                        <thead>
-                                            <tr>
-                                                <th>Network</th>
-                                                <th colspan="2">Visitors</th>
-                                            </tr>
-                                        </thead>
-
-                                        <tr>
-                                            <td>Instagram</td>
-                                            <td>3,550</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-danger" style="width: 80.0%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Facebook</td>
-                                            <td>1,245</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-primary" style="width: 55.9%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Twitter</td>
-                                            <td>1,798</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-secondary" style="width: 67.0%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>YouTube</td>
-                                            <td>986</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-success" style="width: 38.72%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Pinterest</td>
-                                            <td>854</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-danger" style="width: 45.08%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Linkedin</td>
-                                            <td>650</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-warning" style="width: 68.0%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                        <tr>
-                                            <td>Nextdoor</td>
-                                            <td>420</td>
-                                            <td class="w-50">
-                                                <div class="progress progress-md mt-0">
-                                                    <div class="progress-bar bg-info" style="width: 56.4%"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
             </div>
-            <!-- End Monthly Sales -->
-
+            <!-- end row -->
         </div> <!-- container-fluid -->
     </div>
+
+    <!-- ApexCharts Initialization -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const reviewData = @json(\App\Models\Review::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
 
             const months = Array.from({
                 length: 12
             }, (_, i) => i + 1);
-            const chartData = months.map(m => reviewData[m] || 0);
 
-            var options = {
-                chart: {
-                    type: 'bar',
-                    height: 45,
-                    sparkline: {
+            // --- Reviews Chart ---
+            const reviewData = @json(\App\Models\Review::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+            const reviewChartData = months.map(m => reviewData[m] || 0);
+
+            const reviewEl = document.querySelector("#review-stats-chart");
+            if (reviewEl) {
+                new ApexCharts(reviewEl, {
+                    chart: {
+                        type: 'bar',
+                        height: 45,
+                        sparkline: {
+                            enabled: true
+                        }
+                    },
+                    series: [{
+                        name: 'Reviews',
+                        data: reviewChartData
+                    }],
+                    colors: ['#3b82f6'],
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '50%'
+                        }
+                    },
+                    tooltip: {
                         enabled: true
-                    }
-                },
-                series: [{
-                    name: 'Reviews',
-                    data: chartData
-                }],
-                colors: ['#3b82f6'],
-                plotOptions: {
-                    bar: {
-                        columnWidth: '50%'
-                    }
-                },
-                tooltip: {
-                    enabled: true
-                },
-                xaxis: {
-                    labels: {
-                        show: false
                     },
-                    axisBorder: {
-                        show: false
+                    xaxis: {
+                        labels: {
+                            show: false
+                        },
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        }
                     },
-                    axisTicks: {
+                    yaxis: {
                         show: false
                     }
-                },
-                yaxis: {
-                    show: false
-                }
-            };
+                }).render();
+            }
 
-            new ApexCharts(document.querySelector("#review-stats-chart"), options).render();
+            // --- Emails Chart ---
+            const emailData = @json(\App\Models\Contact::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+            const emailChartData = months.map(m => emailData[m] || 0);
+
+            const emailEl = document.querySelector("#email-stats-chart");
+            if (emailEl) {
+                new ApexCharts(emailEl, {
+                    chart: {
+                        type: 'bar',
+                        height: 45,
+                        sparkline: {
+                            enabled: true
+                        }
+                    },
+                    series: [{
+                        name: 'Emails',
+                        data: emailChartData
+                    }],
+                    colors: ['#10b981'],
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '50%'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
+                    },
+                    xaxis: {
+                        labels: {
+                            show: false
+                        },
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        show: false
+                    }
+                }).render();
+            }
+
+            // --- Team Members Chart ---
+            const teamData = @json(\App\Models\Team::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+            const teamChartData = months.map(m => teamData[m] || 0);
+
+            const teamEl = document.querySelector("#teammembers");
+            if (teamEl) {
+                new ApexCharts(teamEl, {
+                    chart: {
+                        type: 'bar',
+                        height: 45,
+                        sparkline: {
+                            enabled: true
+                        }
+                    },
+                    series: [{
+                        name: 'Team Members',
+                        data: teamChartData
+                    }],
+                    colors: ['#f59e0b'],
+                    plotOptions: {
+                        bar: {
+                            columnWidth: '50%'
+                        }
+                    },
+                    tooltip: {
+                        enabled: true
+                    },
+                    xaxis: {
+                        labels: {
+                            show: false
+                        },
+                        axisBorder: {
+                            show: false
+                        },
+                        axisTicks: {
+                            show: false
+                        }
+                    },
+                    yaxis: {
+                        show: false
+                    }
+                }).render();
+            }
+
+
         });
     </script>
 @endsection
