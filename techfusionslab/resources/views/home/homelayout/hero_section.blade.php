@@ -41,7 +41,7 @@
                         Based in Harrow, London, Modern Trading and Services LLP provides tailored financial and
                         business solutions for SMEs, delivering expert guidance and trusted support to help your
                         business grow with confidence. </p>
-                    <a href="contact.html" class="gt-theme-btn">
+                    <a href="{{ route('contact') }}" class="gt-theme-btn">
                         <span>FREE CONSULTATION <i class="fa-solid fa-arrow-right"></i></span>
                         <span>FREE CONSULTATION <i class="fa-solid fa-arrow-right"></i></span>
                     </a>

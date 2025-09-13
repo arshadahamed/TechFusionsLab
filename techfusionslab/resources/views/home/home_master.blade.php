@@ -60,24 +60,27 @@
                 <div class="spinner">
                 </div>
                 <div class="txt-loading">
-                    <span data-text-preloader="M" class="letters-loading">
-                        M
+                    <span data-text-preloader="P" class="letters-loading">
+                        P
                     </span>
-                     <span data-text-preloader="O" class="letters-loading">
+                     <span data-text-preloader="L" class="letters-loading">
+                        L
+                    </span>
+                    <span data-text-preloader="U" class="letters-loading">
+                        U
+                    </span>
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="O" class="letters-loading">
                         O
                     </span>
-                    <span data-text-preloader="D" class="letters-loading">
-                        D
-                    </span>
-                    <span data-text-preloader="E" class="letters-loading">
-                        E
-                    </span>
-                    <span data-text-preloader="R" class="letters-loading">
+                    {{-- <span data-text-preloader="R" class="letters-loading">
                         R
                     </span>
                      <span data-text-preloader="N" class="letters-loading">
                         N
-                    </span>
+                    </span> --}}
                 </div>
                 <p class="text-center">Empowering Your Financial Growth</p>
             </div>

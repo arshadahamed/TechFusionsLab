@@ -18,7 +18,7 @@
                             <h2>VIDEO</h2>
                             <div class="circle-image">
                                 <img src="{{ asset('frontend/assets/img/home-1/feature/circle.png') }}" alt="img">
-                                    <a href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I" class="video-btn video-popup">
+                                    <a href="https://www.youtube.com/" class="video-btn video-popup">
                                     <i class="fa-duotone fa-play"></i>
                                 </a>
                             </div>
@@ -27,7 +27,7 @@
                             <h4>
                                 Video Showcasing <br> Our Range, Events, and <br> Expert tips.
                             </h4>
-                            <h2>GALLARY</h2>
+                            <h2>GALLERY</h2>
                         </div>
                     </div>
                 </div>

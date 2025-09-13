@@ -28,9 +28,9 @@
                                     <li class="{{ request()->routeIs('home') ? 'active' : '' }} menu-thumb">
                                         <a href="{{ route('home') }}">Home</a>
                                     </li>
-                                    <li class="{{ request()->routeIs('our.team') ? 'active' : '' }}">
+                                    {{-- <li class="{{ request()->routeIs('our.team') ? 'active' : '' }}">
                                         <a href="{{ route('our.team') }}">Team</a>
-                                    </li>
+                                    </li> --}}
                                     <li class="{{ request()->routeIs('about') ? 'active' : '' }}">
                                         <a href="{{ route('about') }}">About Us</a>
                                     </li>
