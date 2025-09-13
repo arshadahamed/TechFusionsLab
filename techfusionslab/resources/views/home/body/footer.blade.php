@@ -127,8 +127,8 @@
                         </div>
                         <div class="gt-footer-bottom wow img_full img_right_animation">
                             <a href="https://www.arshadahamed.com">
-                                <img src="{{ $company->white_logo ? asset($company->white_logo) : asset('frontend/assets/img/logo/white-logo.png') }}"
-                                    alt="White Logo">
+                                <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
+                                    alt="Dark Logo">
                             </a>
                             <p>
                                 Copyright ©

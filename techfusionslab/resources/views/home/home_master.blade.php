@@ -118,8 +118,9 @@
                     <div class="offcanvas__content">
                         <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                             <div class="offcanvas__logo">
-                                <a href="index.html">
-                                    <img src="{{ asset('frontend/assets/img/logo/black-logo.png') }}" alt="logo-img">
+                                <a href="{{ route('home') }}" >
+                                    <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
+                                        alt="Dark Logo">
                                 </a>
                             </div>
                             <div class="offcanvas__close">
