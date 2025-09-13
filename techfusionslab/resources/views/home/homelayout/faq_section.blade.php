@@ -15,7 +15,7 @@
                         <p class="gt-text wow fadeInUp" data-wow-delay=".5s">
                             Find answers to common questions about our financial consulting services, pricing, planning process, and how we help you achieve your long-term financial goals with confidence.
                         </p>
-                        <div class="client-info-item wow fadeInUp" data-wow-delay=".3s">
+                        {{-- <div class="client-info-item wow fadeInUp" data-wow-delay=".3s">
                             <div class="info-item">
                                 <div class="client-image">
                                     <img src="{{ asset('frontend/assets/img/home-1/faq/client-1.png') }}" alt="img">
@@ -31,7 +31,7 @@
                                 <h4><span class="gt-count">3</span>M+</h4>
                                 <span>Happy Customer</span>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
