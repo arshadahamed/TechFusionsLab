@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\CompanyInfoController;
 use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\EmailController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\Backend\FaqController;
 
 
 // Homepage
@@ -121,6 +122,20 @@ Route::middleware('auth')->group(function () {
 
     });
 
+    Route::controller(FaqController::class)->group(function () {
+    // Normal FAQs
+        Route::get('/all/faq', 'index')->name('all.faqs');
+        Route::get('/add/faq', 'create')->name('add.faq');
+        Route::post('/store/faq', 'store')->name('store.faq');
+        Route::get('/edit/faq/{faq}', 'edit')->name('edit.faq');
+        Route::post('/update/faq/{faq}', 'update')->name('update.faq');
+        Route::get('/delete/faq/{faq}', 'destroy')->name('delete.faq');
+
+        // Trashed FAQs
+        Route::get('/trashed/faq', 'trashed')->name('trashed.faqs');
+        Route::get('/trashed/faq/restore/{id}', 'restore')->name('faq.restore');
+        Route::get('/trashed/faq/delete/{id}', 'forceDelete')->name('faq.forceDelete');
+    });
 
 
 

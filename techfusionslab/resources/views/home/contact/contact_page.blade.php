@@ -73,6 +73,11 @@
                         </div>
                     </div>
                     <div class="col-lg-8">
+                        @if (session('success'))
+                                <div  id="success-alert" class="alert alert-success mt-2">
+                                    {{ session('success') }}
+                                </div>
+                         @endif
                         <div class="gt-comment-form-wrap">
                             <h3>Send Us Message</h3>
                             <p>There will be no publication of your email address. Required fields are indicated with a *.
@@ -107,16 +112,6 @@
                                 </div>
                             </form>
 
-                            @if (session('success'))
-                                <div class="alert alert-success mt-2">
-                                    {{ session('success') }}
-                                </div>
-                            @endif
-
-
-                            @if (session('success'))
-                                <div class="alert alert-success mt-2">{{ session('success') }}</div>
-                            @endif
 
                         </div>
                     </div>
@@ -141,4 +136,19 @@
             </div>
         </div>
     </div>
+
+
+<script>
+    // Fade out after 3 seconds (3000ms)
+    window.addEventListener('DOMContentLoaded', (event) => {
+        const alert = document.getElementById('success-alert');
+        if(alert){
+            setTimeout(() => {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(() => alert.remove(), 500); // Remove from DOM after fade
+            }, 3000);
+        }
+    });
+</script>
 @endsection

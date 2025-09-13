@@ -8,8 +8,9 @@ use App\Models\Contact;
 
 class EmailController extends Controller
 {
-    public function AllEmails() {
-        $emails = Contact::latest()->get();
+    public function AllEmails()
+    {
+        $emails = Contact::latest()->paginate(5);
         return view('admin.backend.email.all_email',compact('emails'));
     }
     public function DeleteEmail($id) {

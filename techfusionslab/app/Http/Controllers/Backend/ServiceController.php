@@ -11,11 +11,19 @@ use Intervention\Image\Drivers\Gd\Driver;
 class ServiceController extends Controller
 {
     // Show all services
-    public function AllService()
+    public function AllService(Request $request)
     {
-        $services = Service::orderBy('number', 'asc')->get();
+        $query = Service::orderBy('number', 'asc');
+
+        if ($request->search) {
+            $query->where('title', 'like', '%' . $request->search . '%')
+                ->orWhere('description', 'like', '%' . $request->search . '%');
+        }
+
+        $services = $query->paginate(4); // Adjust per page
         return view('admin.backend.service.all_service', compact('services'));
     }
+
 
     // Show add service form
     public function AddService()

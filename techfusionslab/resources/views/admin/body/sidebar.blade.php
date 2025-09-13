@@ -112,6 +112,28 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#sidebarFAQ" data-bs-toggle="collapse">
+                        <i data-feather="help-circle"></i>
+                        <span> FAQ</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarFAQ">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.faqs') }}" class="tp-link">All FAQs</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.faq') }}" class="tp-link">Add FAQ</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('trashed.faqs') }}" class="tp-link text-danger">Trashed FAQs</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
 
 
                 <li class="menu-title mt-2">Settings</li>
