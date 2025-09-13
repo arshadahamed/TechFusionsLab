@@ -20,7 +20,7 @@
                             </div>
                             <button class="array-prev">PREV <i class="fa-solid fa-arrow-left"></i></button>
                         </div>
-                        <div class="rating-ber">
+                        {{-- <div class="rating-ber">
                             <h5>Reviewed on Google</h5>
                             <div class="rating">
                                 <h2>4.5</h2>
@@ -35,7 +35,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
