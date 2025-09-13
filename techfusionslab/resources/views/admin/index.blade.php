@@ -144,184 +144,192 @@
                                     <div class="card-body">
                                         <div class="table-responsive">
                                             <table class="table mb-0">
-                                            <thead>
-                                                <tr>
-                                                    <th scope="col">#</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Email</th>
-                                                    <th scope="col">Message</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    use Illuminate\Support\Str;
-                                                    $emails = \App\Models\Contact::latest()->take(5)->get();
-                                                @endphp
-                                               @foreach ( $emails as $key=> $item )
+                                                <thead>
                                                     <tr>
-                                                        <td>{{$key+1}}</td>
-                                                        <td>{{ $item->name }}</td>
-                                                        <td>{{ $item->email }}</td>
-                                                        <td>{{ Str::limit($item->message, 50,'...') }}</td>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Name</th>
+                                                        <th scope="col">Email</th>
+                                                        <th scope="col">Message</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                    @php
+                                                        use Illuminate\Support\Str;
+                                                        $emails = \App\Models\Contact::latest()->take(5)->get();
+                                                    @endphp
+                                                    @forelse ($emails as $key => $item)
+                                                        <tr>
+                                                            <td>{{ $emails->firstItem() + $key }}</td>
+                                                            <td>{{ $item->name }}</td>
+                                                            <td>{{ $item->email }}</td>
+                                                            <td>{{ Str::limit($item->message, 50, '...') }}</td>
+                                                            <td>
+                                                                <a href="{{ route('delete.email', $item->id) }}"
+                                                                    class="btn btn-danger btn-sm" id="delete">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="5" class="text-center">No emails found.</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
-
-
-
                     </div>
                 </div>
-            </div>
-            <!-- end row -->
-        </div> <!-- container-fluid -->
-    </div>
+                <!-- end row -->
+            </div> <!-- container-fluid -->
+        </div>
 
-    <!-- ApexCharts Initialization -->
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        <!-- ApexCharts Initialization -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
 
-            const months = Array.from({
-                length: 12
-            }, (_, i) => i + 1);
+                const months = Array.from({
+                    length: 12
+                }, (_, i) => i + 1);
 
-            // --- Reviews Chart ---
-            const reviewData = @json(\App\Models\Review::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-            const reviewChartData = months.map(m => reviewData[m] || 0);
+                // --- Reviews Chart ---
+                const reviewData = @json(\App\Models\Review::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+                const reviewChartData = months.map(m => reviewData[m] || 0);
 
-            const reviewEl = document.querySelector("#review-stats-chart");
-            if (reviewEl) {
-                new ApexCharts(reviewEl, {
-                    chart: {
-                        type: 'bar',
-                        height: 45,
-                        sparkline: {
+                const reviewEl = document.querySelector("#review-stats-chart");
+                if (reviewEl) {
+                    new ApexCharts(reviewEl, {
+                        chart: {
+                            type: 'bar',
+                            height: 45,
+                            sparkline: {
+                                enabled: true
+                            }
+                        },
+                        series: [{
+                            name: 'Reviews',
+                            data: reviewChartData
+                        }],
+                        colors: ['#3b82f6'],
+                        plotOptions: {
+                            bar: {
+                                columnWidth: '50%'
+                            }
+                        },
+                        tooltip: {
                             enabled: true
-                        }
-                    },
-                    series: [{
-                        name: 'Reviews',
-                        data: reviewChartData
-                    }],
-                    colors: ['#3b82f6'],
-                    plotOptions: {
-                        bar: {
-                            columnWidth: '50%'
-                        }
-                    },
-                    tooltip: {
-                        enabled: true
-                    },
-                    xaxis: {
-                        labels: {
-                            show: false
                         },
-                        axisBorder: {
-                            show: false
+                        xaxis: {
+                            labels: {
+                                show: false
+                            },
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            }
                         },
-                        axisTicks: {
+                        yaxis: {
                             show: false
                         }
-                    },
-                    yaxis: {
-                        show: false
-                    }
-                }).render();
-            }
+                    }).render();
+                }
 
-            // --- Emails Chart ---
-            const emailData = @json(\App\Models\Contact::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-            const emailChartData = months.map(m => emailData[m] || 0);
+                // --- Emails Chart ---
+                const emailData = @json(\App\Models\Contact::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+                const emailChartData = months.map(m => emailData[m] || 0);
 
-            const emailEl = document.querySelector("#email-stats-chart");
-            if (emailEl) {
-                new ApexCharts(emailEl, {
-                    chart: {
-                        type: 'bar',
-                        height: 45,
-                        sparkline: {
+                const emailEl = document.querySelector("#email-stats-chart");
+                if (emailEl) {
+                    new ApexCharts(emailEl, {
+                        chart: {
+                            type: 'bar',
+                            height: 45,
+                            sparkline: {
+                                enabled: true
+                            }
+                        },
+                        series: [{
+                            name: 'Emails',
+                            data: emailChartData
+                        }],
+                        colors: ['#10b981'],
+                        plotOptions: {
+                            bar: {
+                                columnWidth: '50%'
+                            }
+                        },
+                        tooltip: {
                             enabled: true
-                        }
-                    },
-                    series: [{
-                        name: 'Emails',
-                        data: emailChartData
-                    }],
-                    colors: ['#10b981'],
-                    plotOptions: {
-                        bar: {
-                            columnWidth: '50%'
-                        }
-                    },
-                    tooltip: {
-                        enabled: true
-                    },
-                    xaxis: {
-                        labels: {
-                            show: false
                         },
-                        axisBorder: {
-                            show: false
+                        xaxis: {
+                            labels: {
+                                show: false
+                            },
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            }
                         },
-                        axisTicks: {
+                        yaxis: {
                             show: false
                         }
-                    },
-                    yaxis: {
-                        show: false
-                    }
-                }).render();
-            }
+                    }).render();
+                }
 
-            // --- Team Members Chart ---
-            const teamData = @json(\App\Models\Team::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-            const teamChartData = months.map(m => teamData[m] || 0);
+                // --- Team Members Chart ---
+                const teamData = @json(\App\Models\Team::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
+                const teamChartData = months.map(m => teamData[m] || 0);
 
-            const teamEl = document.querySelector("#teammembers");
-            if (teamEl) {
-                new ApexCharts(teamEl, {
-                    chart: {
-                        type: 'bar',
-                        height: 45,
-                        sparkline: {
+                const teamEl = document.querySelector("#teammembers");
+                if (teamEl) {
+                    new ApexCharts(teamEl, {
+                        chart: {
+                            type: 'bar',
+                            height: 45,
+                            sparkline: {
+                                enabled: true
+                            }
+                        },
+                        series: [{
+                            name: 'Team Members',
+                            data: teamChartData
+                        }],
+                        colors: ['#f59e0b'],
+                        plotOptions: {
+                            bar: {
+                                columnWidth: '50%'
+                            }
+                        },
+                        tooltip: {
                             enabled: true
-                        }
-                    },
-                    series: [{
-                        name: 'Team Members',
-                        data: teamChartData
-                    }],
-                    colors: ['#f59e0b'],
-                    plotOptions: {
-                        bar: {
-                            columnWidth: '50%'
-                        }
-                    },
-                    tooltip: {
-                        enabled: true
-                    },
-                    xaxis: {
-                        labels: {
-                            show: false
                         },
-                        axisBorder: {
-                            show: false
+                        xaxis: {
+                            labels: {
+                                show: false
+                            },
+                            axisBorder: {
+                                show: false
+                            },
+                            axisTicks: {
+                                show: false
+                            }
                         },
-                        axisTicks: {
+                        yaxis: {
                             show: false
                         }
-                    },
-                    yaxis: {
-                        show: false
-                    }
-                }).render();
-            }
+                    }).render();
+                }
 
 
-        });
-    </script>
-@endsection
+            });
+        </script>
+    @endsection

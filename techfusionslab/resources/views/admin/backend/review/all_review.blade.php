@@ -31,7 +31,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($review as $key => $item)
+                                @forelse ($review as $key => $item)
                                 <tr>
                                     <td>{{ $review->firstItem() + $key }}</td>
                                     <td>{{ $item->name }}</td>
@@ -43,7 +43,11 @@
                                         <a href="{{ route('delete.review', $item->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">No reviews found</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
 

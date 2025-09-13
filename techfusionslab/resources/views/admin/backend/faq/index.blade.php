@@ -35,7 +35,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($faqs as $key => $item)
+                                @forelse ($faqs as $key => $item)
                                 <tr>
                                     <td>{{ $faqs->firstItem() + $key }}</td>
                                     <td>{{ $item->question }}</td>
@@ -45,7 +45,11 @@
                                         <a href="{{ route('delete.faq', $item->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>
                                     </td>
                                 </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="text-center">No FAQs found.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
 
