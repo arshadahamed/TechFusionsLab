@@ -9,18 +9,13 @@ use Illuminate\Support\Facades\Storage;
 
 class HeroController extends Controller
 {
-    /**
-     * Show the hero section in admin panel.
-     */
+
     public function HeroSection()
     {
-        $hero = Hero::first(); // fetch first hero record
+        $hero = Hero::first();
         return view('admin.backend.hero.get_hero_section', compact('hero'));
     }
 
-    /**
-     * Edit hero section.
-     */
     public function editHero()
     {
         $hero = Hero::first();
@@ -42,9 +37,6 @@ class HeroController extends Controller
         return view('admin.backend.hero.get_hero_section', compact('hero'));
     }
 
-    /**
-     * Update hero section.
-     */
     public function updateHero(Request $request, $id)
     {
         $hero = Hero::findOrFail($id);
