@@ -19,4 +19,6 @@
 
     @include('home.homelayout.brand_section')
 
+    @include('home.homelayout.blog_section')
+
 @endsection
