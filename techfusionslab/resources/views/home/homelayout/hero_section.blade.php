@@ -21,7 +21,7 @@
                 <div class="gt-hero-content">
                     <h1 class="wow img-custom-anim-top" data-wow-duration="1.3s" data-wow-delay="0.3s">
                         {{ $hero->title ?? 'EMPOWERING YOUR' }} <br>
-                        FINANCIAL <span>{{ $hero->highlight ?? 'CONFIDENCE' }}</span>
+                        {{ $hero->title_two ?? 'FINANCIAL' }} <span>{{ $hero->highlight ?? 'CONFIDENCE' }}</span>
                     </h1>
                 </div>
             </div>

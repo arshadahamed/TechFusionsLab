@@ -42,6 +42,14 @@
                                                     </div>
                                                 </div>
 
+                                                <!-- Title -->
+                                                <div class="form-group mb-3 row">
+                                                    <label class="form-label" for="title_two">Title TWO</label>
+                                                    <div class="col-lg-12 col-xl-12">
+                                                        <input class="form-control" type="text" name="title_two" id="title_two" value="{{ $hero->title_two }}" required>
+                                                    </div>
+                                                </div>
+
                                                 <!-- Highlight -->
                                                 <div class="form-group mb-3 row">
                                                     <label class="form-label" for="highlight">Highlight Text</label>

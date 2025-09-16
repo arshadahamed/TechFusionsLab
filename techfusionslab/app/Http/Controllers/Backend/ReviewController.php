@@ -7,124 +7,120 @@ use Illuminate\Http\Request;
 use App\Models\Review;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
 {
     public function AllReview() {
         $review = Review::orderBy('id', 'asc')->paginate(2);
-        return view('admin.backend.review.all_review',compact('review'));
+        return view('admin.backend.review.all_review', compact('review'));
     }
-    //End Method
 
     public function AddReview() {
         return view('admin.backend.review.add_review');
     }
-    //End Method
 
-    public function StoreReview(Request $request){
+    public function StoreReview(Request $request)
+    {
+        $path = null;
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
+        if ($request->hasFile('image')) {
+            // Resize before saving
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            $img = $manager->read($image);
-            $img->resize(61,60)->save(public_path('upload/review/'.$name_gen));
-            $save_url = 'upload/review/'.$name_gen;
+            $image   = $manager->read($request->file('image'));
+            $image->resize(61, 60);
 
-            Review::create([
-                'name' => $request->name,
-                'position' => $request->position,
-                'message' => $request->message,
-                'image' => $save_url,
-            ]);
+            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            $path = "reviews/$filename";
+
+            // Save into storage/app/public/reviews
+            Storage::disk('public')->put($path, (string) $image->encode());
         }
 
-        $notification = array(
-            'message' => 'Review Inserted Successfully',
+        Review::create([
+            'name'     => $request->name,
+            'position' => $request->position,
+            'message'  => $request->message,
+            'image'    => $path,
+        ]);
+
+        return redirect()->route('all.review')->with([
+            'message'    => 'Review Inserted Successfully',
             'alert-type' => 'success'
-        );
-
-        return redirect()->route('all.review')->with($notification);
+        ]);
     }
-    // End Method
 
-    public function EditReview($id){
+    public function EditReview($id) {
         $review = Review::findOrFail($id);
-        return view('admin.backend.review.edit_review',compact('review'));
+        return view('admin.backend.review.edit_review', compact('review'));
     }
 
-    // End Method
+    public function UpdateReview(Request $request)
+    {
+        $review = Review::findOrFail($request->id);
+        $path   = $review->image;
 
-    public function UpdateReview(Request $request){
-        $review_id = $request->id;
+        if ($request->hasFile('image')) {
+            // Delete old image
+            if ($review->image && Storage::disk('public')->exists($review->image)) {
+                Storage::disk('public')->delete($review->image);
+            }
 
-        if ($request->file('image')) {
-            $image = $request->file('image');
+            // Resize + Save new image
             $manager = new ImageManager(new Driver());
-            $name_gen = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            $img = $manager->read($image);
-            $img->resize(61,60)->save(public_path('upload/review/'.$name_gen));
-            $save_url = 'upload/review/'.$name_gen;
+            $image   = $manager->read($request->file('image'));
+            $image->resize(61, 60);
 
-            Review::findOrFail($review_id)->update([
-                'name' => $request->name,
-                'position' => $request->position,
-                'message' => $request->message,
-                'image' => $save_url,
-            ]);
+            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
+            $path = "reviews/$filename";
 
-            $notification = array(
-                'message' => 'Review Updated With Image Successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('all.review')->with($notification);
-
-        }else{
-            Review::findOrFail($review_id)->update([
-                'name' => $request->name,
-                'position' => $request->position,
-                'message' => $request->message,
-            ]);
-
-            $notification = array(
-                'message' => 'Review Updated Without Image Successfully',
-                'alert-type' => 'success'
-            );
-
-            return redirect()->route('all.review')->with($notification);
+            Storage::disk('public')->put($path, (string) $image->encode());
         }
 
-    } // End Method
+        $review->update([
+            'name'     => $request->name,
+            'position' => $request->position,
+            'message'  => $request->message,
+            'image'    => $path,
+        ]);
 
-    public function DeleteReview($id){
-        $review = Review::findOrFail($id);
-        $img = $review->image;
-        unlink($img);
-
-        Review::findOrFail($id)->delete();
-
-        $notification = array(
-            'message' => 'Review Deleted Successfully',
+        return redirect()->route('all.review')->with([
+            'message'    => $request->hasFile('image')
+                ? 'Review Updated With Image Successfully'
+                : 'Review Updated Without Image Successfully',
             'alert-type' => 'success'
-        );
+        ]);
+    }
 
-        return redirect()->back()->with($notification);
-    } // End Method
-
-    public function DeleteReviewAjax($id){
+    public function DeleteReview($id)
+    {
         $review = Review::findOrFail($id);
-        $img = $review->image;
-        unlink($img);
 
-        Review::findOrFail($id)->delete();
+        if ($review->image && Storage::disk('public')->exists($review->image)) {
+            Storage::disk('public')->delete($review->image);
+        }
 
-        $notification = array(
-            'message' => 'Review Deleted Successfully',
+        $review->delete();
+
+        return redirect()->back()->with([
+            'message'    => 'Review Deleted Successfully',
             'alert-type' => 'success'
-        );
+        ]);
+    }
 
-        return response()->back()->with($notification);
-    } // End Method
+    public function DeleteReviewAjax($id)
+    {
+        $review = Review::findOrFail($id);
 
+        if ($review->image && Storage::disk('public')->exists($review->image)) {
+            Storage::disk('public')->delete($review->image);
+        }
+
+        $review->delete();
+
+        return response()->json([
+            'message'    => 'Review Deleted Successfully',
+            'alert-type' => 'success'
+        ]);
+    }
 }

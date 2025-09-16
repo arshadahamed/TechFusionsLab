@@ -24,6 +24,7 @@ class HeroController extends Controller
         if (!$hero) {
             $hero = Hero::create([
                 'title' => '',
+                'title_two' => '',
                 'highlight' => '',
                 'description' => '',
                 'button_text' => '',
@@ -42,7 +43,7 @@ class HeroController extends Controller
         $hero = Hero::findOrFail($id);
 
         $data = $request->only([
-            'title', 'highlight', 'description', 'button_text', 'button_link'
+            'title', 'title_two', 'highlight', 'description', 'button_text', 'button_link'
         ]);
 
         // Handle image uploads

@@ -10,6 +10,7 @@ class Hero extends Model
    protected $fillable = [
         'title',
         'highlight',
+        'title_two',
         'description',
         'button_text',
         'button_link',
