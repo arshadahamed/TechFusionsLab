@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');                       // Blog title
             $table->string('slug')->unique();              // SEO-friendly URL
-            $table->string('subtitle')->nullable();        // Optional subtitle
             $table->string('main_image')->nullable();      // Featured image
             $table->longText('content')->nullable();       // Blog content
             $table->string('author_name')->nullable();     // Blog author

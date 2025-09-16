@@ -20,7 +20,6 @@ class Blog extends Model
         'published_at',
         'tags',
         'category',
-        'subtitle',
         'is_featured',
         'meta_title',
         'meta_description',
