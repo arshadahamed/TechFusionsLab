@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\TeamController;
 use App\Http\Controllers\Backend\EmailController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Backend\FaqController;
+use App\Http\Controllers\Backend\BlogController;
 
 
 // Homepage
@@ -136,6 +137,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/trashed/faq/restore/{id}', 'restore')->name('faq.restore');
         Route::get('/trashed/faq/delete/{id}', 'forceDelete')->name('faq.forceDelete');
     });
+
+
+    // Blog routes
+    Route::resource('blogs', BlogController::class)->except(['show']);
+
+   // SEO-friendly show route with ID + slug
+    Route::get('/blog/{id}-{slug}', [BlogController::class, 'show'])->name('blogs.show');
+
+
 
 
 
