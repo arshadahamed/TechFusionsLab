@@ -110,13 +110,12 @@
                                                 <div class="form-group mb-3 row">
                                                     <div class="col-lg-12 col-xl-12">
                                                         <p>Background Image Preview:</p>
-                                                        <img id="showBgImage" src="{{ $hero->bg_image ? asset($hero->bg_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="bg image">
-
+                                                        <img id="showBgImage" src="{{ $hero->bg_image ? asset('storage/' . $hero->bg_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="bg image">
                                                         <p>Main Hero Image Preview:</p>
-                                                        <img id="showMainImage" src="{{ $hero->main_image ? asset($hero->main_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="main image">
+                                                        <img id="showMainImage" src="{{ $hero->main_image ? asset('storage/' . $hero->main_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="main image">
 
                                                         <p>Map Image Preview:</p>
-                                                        <img id="showMapImage" src="{{ $hero->map_image ? asset($hero->map_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="map image">
+                                                        <img id="showMapImage" src="{{ $hero->map_image ? asset('storage/' . $hero->map_image) : asset('frontend/assets/img/default-image.png') }}" class="img-thumbnail mb-2" alt="map image">
                                                     </div>
                                                 </div>
 
