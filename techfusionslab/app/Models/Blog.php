@@ -9,7 +9,10 @@ use Illuminate\Support\Str;
 class Blog extends Model
 {
     use HasFactory;
-
+    protected $casts = [
+        'published_at' => 'datetime',
+        'is_featured' => 'boolean',
+    ];
     protected $fillable = [
         'title',
         'slug',

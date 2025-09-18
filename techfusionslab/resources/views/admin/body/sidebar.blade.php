@@ -94,6 +94,24 @@
                     </div>
                 </li>
 
+                <li>
+                    <a href="#sidebarBlog" data-bs-toggle="collapse">
+                        <i data-feather="book-open"></i>
+                        <span> Blogs</span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarBlog">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('blogs.index') }}" class="tp-link">All Blogs</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('blogs.create') }}" class="tp-link">Add Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
                  <li>
                     <a href="#sidebarTeam" data-bs-toggle="collapse">
                         <i data-feather="users"></i>

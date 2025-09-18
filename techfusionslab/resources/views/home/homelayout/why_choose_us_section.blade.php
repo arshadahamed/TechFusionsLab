@@ -18,7 +18,8 @@
                             </h2>
                         </div>
                         <div class="gt-text wow fadeInUp" data-wow-delay=".5s">
-                            Gain a competitive edge with our expert consulting services. We combine industry experience, strategic insights, and customized solutions to help your business grow, adapt, and thrive in a dynamic marketplace.
+                            Pluto Consultancy Ltd is a London based accountancy service provider for small and medium sized businesses. Our qualified professionals will be working very closely with you to build and manage your finance function as smoothly as possible, allowing you to focus on your core business while also providing you the right financial advice.
+                            Your trusted partner for seamless accountancy solutions.
                         </div>
                         <div class="gt-why-choose-us-item">
                             <div class="gt-chosse-us-icon-item">
@@ -49,7 +50,7 @@
                                 <span>READ MORE <i class="fa-solid fa-arrow-right"></i></span>
                             </a>
                             <div class="gt-count-item">
-                                <h2><span class="gt-count">69</span></h2>
+                                <h2><span class="gt-count">20</span></h2>
                                 <p>
                                     + Years <br> experience
                                 </p>
