@@ -71,7 +71,7 @@
 
                         <!-- Buttons -->
                         <div class="gt-about-button-item mt-4 wow fadeInUp" data-wow-delay=".3s">
-                            <a href="about.html" class="gt-theme-btn">
+                            <a href="{{ route('about') }}" class="gt-theme-btn">
                                 <span>MORE ABOUT <i class="fa-solid fa-arrow-right"></i></span>
                                 <span>MORE ABOUT <i class="fa-solid fa-arrow-right"></i></span>
                             </a>
