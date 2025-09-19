@@ -102,35 +102,15 @@
             <div class="gt-brand-wrapper-2">
                 <h4 class="text-center wow fadeInUp" data-wow-delay=".3s">Our Trusted Partners</h4>
                 <div class="gt-brand-item">
-                    <div class="swiper gt-brand-slider">
+                    {{-- <div class="swiper gt-brand-slider">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="gt-brand-image">
                                     <img src="{{ asset('frontend/assets/img/home-1/brand/01.png') }}" alt="img">
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="gt-brand-image">
-                                    <img src="{{ asset('frontend/assets/img/home-1/brand/02.png') }}" alt="img">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="gt-brand-image">
-                                    <img src="{{ asset('frontend/assets/img/home-1/brand/03.png') }}" alt="img">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="gt-brand-image">
-                                    <img src="{{ asset('frontend/assets/img/home-1/brand/04.png') }}" alt="img">
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="gt-brand-image">
-                                    <img src="{{ asset('frontend/assets/img/home-1/brand/05.png') }}" alt="img">
-                                </div>
-                            </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
