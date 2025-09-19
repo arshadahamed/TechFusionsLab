@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CompanyInfo;
-use Illuminate\Support\Facades\File; // For direct file deletion
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+
 
 class CompanyInfoController extends Controller
 {
@@ -60,32 +61,32 @@ class CompanyInfoController extends Controller
 
         // White Logo
         if ($request->hasFile('white_logo')) {
-            if ($company->white_logo && File::exists(public_path($company->white_logo))) {
-                File::delete(public_path($company->white_logo));
+            if ($company->white_logo && Storage::exists($company->white_logo)) {
+                Storage::delete($company->white_logo);
             }
             $whiteName = time().'_white.'.$request->white_logo->getClientOriginalExtension();
-            $request->white_logo->move($uploadPath, $whiteName);
-            $data['white_logo'] = 'upload/logo/'.$whiteName;
+            $path = $request->file('white_logo')->storeAs('public/upload/logo', $whiteName);
+            $data['white_logo'] = str_replace('public/', 'storage/', $path); // For public URL
         }
 
         // Dark Logo
         if ($request->hasFile('dark_logo')) {
-            if ($company->dark_logo && File::exists(public_path($company->dark_logo))) {
-                File::delete(public_path($company->dark_logo));
+            if ($company->dark_logo && Storage::exists($company->dark_logo)) {
+                Storage::delete($company->dark_logo);
             }
             $darkName = time().'_dark.'.$request->dark_logo->getClientOriginalExtension();
-            $request->dark_logo->move($uploadPath, $darkName);
-            $data['dark_logo'] = 'upload/logo/'.$darkName;
+            $path = $request->file('dark_logo')->storeAs('public/upload/logo', $darkName);
+            $data['dark_logo'] = str_replace('public/', 'storage/', $path);
         }
 
         // Favicon
         if ($request->hasFile('favicon')) {
-            if ($company->favicon && File::exists(public_path($company->favicon))) {
-                File::delete(public_path($company->favicon));
+            if ($company->favicon && Storage::exists($company->favicon)) {
+                Storage::delete($company->favicon);
             }
             $faviconName = time().'_favicon.'.$request->favicon->getClientOriginalExtension();
-            $request->favicon->move($uploadPath, $faviconName);
-            $data['favicon'] = 'upload/logo/'.$faviconName;
+            $path = $request->file('favicon')->storeAs('public/upload/logo', $faviconName);
+            $data['favicon'] = str_replace('public/', 'storage/', $path);
         }
 
         $data['slug'] = Str::slug($request->company_name, '-');

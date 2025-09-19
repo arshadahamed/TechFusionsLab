@@ -25,15 +25,13 @@ class ReviewController extends Controller
         $path = null;
 
         if ($request->hasFile('image')) {
-            // Resize before saving
             $manager = new ImageManager(new Driver());
             $image   = $manager->read($request->file('image'));
             $image->resize(61, 60);
 
             $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $path = "reviews/$filename";
+            $path = "upload/review/$filename"; // Changed path
 
-            // Save into storage/app/public/reviews
             Storage::disk('public')->put($path, (string) $image->encode());
         }
 
@@ -61,18 +59,16 @@ class ReviewController extends Controller
         $path   = $review->image;
 
         if ($request->hasFile('image')) {
-            // Delete old image
             if ($review->image && Storage::disk('public')->exists($review->image)) {
                 Storage::disk('public')->delete($review->image);
             }
 
-            // Resize + Save new image
             $manager = new ImageManager(new Driver());
             $image   = $manager->read($request->file('image'));
             $image->resize(61, 60);
 
             $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $path = "reviews/$filename";
+            $path = "upload/review/$filename"; // Changed path
 
             Storage::disk('public')->put($path, (string) $image->encode());
         }

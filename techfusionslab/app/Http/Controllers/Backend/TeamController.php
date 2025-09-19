@@ -7,56 +7,45 @@ use Illuminate\Http\Request;
 use App\Models\Team;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TeamController extends Controller
 {
-    // Show all team members
     public function AllTeam()
     {
         $teams = Team::latest()->paginate(10);
         return view('admin.backend.team.all_team', compact('teams'));
     }
 
-    // Show add team member form
     public function AddTeam()
     {
         return view('admin.backend.team.add_team');
     }
 
-    // Store new team member
     public function StoreTeam(Request $request)
     {
-        $data = [
-            'name'      => $request->name,
-            'position'  => $request->position,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'bio'       => $request->bio,
-            'facebook'  => $request->facebook,
-            'twitter'   => $request->twitter,
-            'linkedin'  => $request->linkedin,
-            'youtube'   => $request->youtube,
-            'instagram' => $request->instagram,
-            'status'    => $request->status ?? 'active',
-        ];
+        $data = $request->only([
+            'name','position','email','phone','bio','facebook','twitter',
+            'linkedin','youtube','instagram','status'
+        ]);
 
+        $data['status'] = $data['status'] ?? 'active';
         $manager = new ImageManager(new Driver());
 
-        // Image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image = $request->file('image');
-            $ext = $image->getClientOriginalExtension();
-            $name_image = hexdec(uniqid()) . '.' . $ext;
+            $ext   = $image->getClientOriginalExtension();
+            $name  = hexdec(uniqid()) . '.' . $ext;
+            $path  = "upload/team/$name";
 
             if (strtolower($ext) === 'svg') {
-                $image->move(public_path('upload/team/'), $name_image);
+                Storage::disk('public')->putFileAs('upload/team', $image, $name);
             } else {
-                $img = $manager->read($image);
-                $img->resize(524, 588)->save(public_path('upload/team/' . $name_image));
+                $img = $manager->make($image)->resize(524, 588);
+                Storage::disk('public')->put($path, (string)$img->encode());
             }
 
-            $data['image'] = 'upload/team/' . $name_image;
+            $data['image'] = $path;
         }
 
         Team::create($data);
@@ -67,53 +56,41 @@ class TeamController extends Controller
         ]);
     }
 
-    // Show edit team member form
     public function EditTeam($id)
     {
         $team = Team::findOrFail($id);
         return view('admin.backend.team.edit_team', compact('team'));
     }
 
-    // Update team member
     public function UpdateTeam(Request $request, $id)
     {
         $team = Team::findOrFail($id);
-
-        $data = [
-            'name'      => $request->name,
-            'position'  => $request->position,
-            'email'     => $request->email,
-            'phone'     => $request->phone,
-            'bio'       => $request->bio,
-            'facebook'  => $request->facebook,
-            'twitter'   => $request->twitter,
-            'linkedin'  => $request->linkedin,
-            'youtube'   => $request->youtube,
-            'instagram' => $request->instagram,
-            'status'    => $request->status ?? 'active',
-        ];
-
+        $data = $request->only([
+            'name','position','email','phone','bio','facebook','twitter',
+            'linkedin','youtube','instagram','status'
+        ]);
+        $data['status'] = $data['status'] ?? 'active';
         $manager = new ImageManager(new Driver());
 
-        // Image upload
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Delete old image
+            if ($team->image && Storage::disk('public')->exists($team->image)) {
+                Storage::disk('public')->delete($team->image);
+            }
+
             $image = $request->file('image');
-            $ext = $image->getClientOriginalExtension();
-            $name_image = hexdec(uniqid()) . '.' . $ext;
+            $ext   = $image->getClientOriginalExtension();
+            $name  = hexdec(uniqid()) . '.' . $ext;
+            $path  = "upload/team/$name";
 
             if (strtolower($ext) === 'svg') {
-                $image->move(public_path('upload/team/'), $name_image);
+                Storage::disk('public')->putFileAs('upload/team', $image, $name);
             } else {
-                $img = $manager->read($image);
-                $img->resize(524, 588)->save(public_path('upload/team/' . $name_image));
+                $img = $manager->make($image)->resize(524, 588);
+                Storage::disk('public')->put($path, (string)$img->encode());
             }
 
-            // Delete old image
-            if ($team->image && file_exists(public_path($team->image))) {
-                unlink(public_path($team->image));
-            }
-
-            $data['image'] = 'upload/team/' . $name_image;
+            $data['image'] = $path;
         }
 
         $team->update($data);
@@ -124,13 +101,12 @@ class TeamController extends Controller
         ]);
     }
 
-    // Delete team member
     public function DeleteTeam($id)
     {
         $team = Team::findOrFail($id);
 
-        if ($team->image && file_exists(public_path($team->image))) {
-            unlink(public_path($team->image));
+        if ($team->image && Storage::disk('public')->exists($team->image)) {
+            Storage::disk('public')->delete($team->image);
         }
 
         $team->delete();
