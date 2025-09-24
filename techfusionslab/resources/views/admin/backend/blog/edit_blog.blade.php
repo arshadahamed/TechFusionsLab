@@ -70,7 +70,7 @@
                                         <input type="file" name="main_image" id="main_image" class="form-control">
                                         <small class="text-muted">Recommended size: 916x505 px</small>
                                         <img id="showMainImage"
-                                             src="{{ $blog->main_image ? asset('storage/' . $blog->main_image) : url('upload/no_image.jpg') }}"
+                                             src="{{ $blog->main_image ? asset('storage/' .$blog->main_image) : url('upload/no_image.jpg') }}"
                                              class="rounded img-thumbnail mt-2 d-block"
                                              style="max-width: 300px; height:auto;"
                                              alt="Blog Main Image Preview">

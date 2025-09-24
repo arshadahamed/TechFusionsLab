@@ -22,7 +22,7 @@
                     @foreach ($services as $service)
                         <div class="gt-service-main-items wow fadeInUp" data-wow-delay=".3s">
                             <div class="image-hover d-none d-md-block bg-cover"
-                                style="background-image: url('{{ asset($service->hover_image ?? 'frontend/assets/img/home-1/service/hover.png') }}');">
+                                style="background-image: url('{{ asset('storage/'.$service->hover_image ?? 'frontend/assets/img/home-1/service/hover.png') }}');">
                             </div>
 
                             {{-- Odd items --}}
@@ -37,13 +37,13 @@
                                     <p>{{ $service->description }}</p>
                                 </div>
                                 <div class="icon">
-                                    <img src="{{ asset($service->icon ?? 'frontend/assets/img/home-1/icon/21.svg') }}" alt="icon">
+                                    <img src="{{ asset('storage/'.$service->icon ?? 'frontend/assets/img/home-1/icon/21.svg') }}" alt="icon">
                                 </div>
 
                             {{-- Even items --}}
                             @else
                                 <div class="icon">
-                                    <img src="{{ asset($service->icon ?? 'frontend/assets/img/home-1/icon/21.svg') }}" alt="icon">
+                                    <img src="{{ asset('storage/'.$service->icon ?? 'frontend/assets/img/home-1/icon/21.svg') }}" alt="icon">
                                 </div>
                                 <div class="gt-service-left-items">
                                     <p>{{ $service->description }}</p>

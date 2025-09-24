@@ -31,53 +31,25 @@ class ServiceController extends Controller
 
     public function StoreService(Request $request)
     {
-        $data = [
-            'title'       => $request->title,
-            'description' => $request->description,
-            'number'      => $request->number ?? null,
-            'link'        => $request->link ?? null,
-        ];
+        $data = $request->only(['title', 'description', 'number', 'link']);
 
-        $manager = new ImageManager(new Driver());
-
-        // Icon upload
-        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
-            $icon = $request->file('icon');
-            $ext  = $icon->getClientOriginalExtension();
-            $name = hexdec(uniqid()) . '.' . $ext;
-
-            if (strtolower($ext) === 'svg') {
-                Storage::disk('public')->putFileAs('upload/services', $icon, $name);
-            } else {
-                $img_icon = $manager->make($icon)->resize(61, 60);
-                Storage::disk('public')->put('upload/services/' . $name, (string)$img_icon->encode());
-            }
-
-            $data['icon'] = 'upload/services/' . $name;
+        // Icon
+        if ($request->hasFile('icon')) {
+            $data['icon'] = $request->file('icon')->store('services', 'public');
         }
 
-        // Hover image
-        if ($request->hasFile('hover_image') && $request->file('hover_image')->isValid()) {
-            $hover = $request->file('hover_image');
-            $ext   = $hover->getClientOriginalExtension();
-            $name  = hexdec(uniqid()) . '.' . $ext;
-
-            if (strtolower($ext) === 'svg') {
-                Storage::disk('public')->putFileAs('upload/services', $hover, $name);
-            } else {
-                $img_hover = $manager->make($hover)->resize(61, 60);
-                Storage::disk('public')->put('upload/services/' . $name, (string)$img_hover->encode());
-            }
-
-            $data['hover_image'] = 'upload/services/' . $name;
+        // Hover Image
+        if ($request->hasFile('hover_image')) {
+            $data['hover_image'] = $request->file('hover_image')->store('services', 'public');
         }
 
         Service::create($data);
 
-        return redirect()->route('all.services')->with([
+        $notification = array(
             'message'    => 'Service Inserted Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return redirect()->route('all.services')->with($notification);
     }
 
     public function EditService($id)
@@ -88,62 +60,32 @@ class ServiceController extends Controller
 
     public function UpdateService(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
-        $data    = [
-            'title'       => $request->title,
-            'description' => $request->description,
-            'number'      => $request->number,
-            'link'        => $request->link,
-        ];
+         $service = Service::findOrFail($id);
+        $data    = $request->only(['title', 'description', 'number', 'link']);
 
-        $manager = new ImageManager(new Driver());
-
-        // Icon upload
-        if ($request->hasFile('icon') && $request->file('icon')->isValid()) {
+        // Icon
+        if ($request->hasFile('icon')) {
             if ($service->icon && Storage::disk('public')->exists($service->icon)) {
                 Storage::disk('public')->delete($service->icon);
             }
-
-            $icon = $request->file('icon');
-            $ext  = $icon->getClientOriginalExtension();
-            $name = hexdec(uniqid()) . '.' . $ext;
-
-            if (strtolower($ext) === 'svg') {
-                Storage::disk('public')->putFileAs('upload/services', $icon, $name);
-            } else {
-                $img_icon = $manager->make($icon)->resize(61, 60);
-                Storage::disk('public')->put('upload/services/' . $name, (string)$img_icon->encode());
-            }
-
-            $data['icon'] = 'upload/services/' . $name;
+            $data['icon'] = $request->file('icon')->store('services', 'public');
         }
 
-        // Hover image
-        if ($request->hasFile('hover_image') && $request->file('hover_image')->isValid()) {
+        // Hover Image
+        if ($request->hasFile('hover_image')) {
             if ($service->hover_image && Storage::disk('public')->exists($service->hover_image)) {
                 Storage::disk('public')->delete($service->hover_image);
             }
-
-            $hover = $request->file('hover_image');
-            $ext   = $hover->getClientOriginalExtension();
-            $name  = hexdec(uniqid()) . '.' . $ext;
-
-            if (strtolower($ext) === 'svg') {
-                Storage::disk('public')->putFileAs('upload/services', $hover, $name);
-            } else {
-                $img_hover = $manager->make($hover)->resize(61, 60);
-                Storage::disk('public')->put('upload/services/' . $name, (string)$img_hover->encode());
-            }
-
-            $data['hover_image'] = 'upload/services/' . $name;
+            $data['hover_image'] = $request->file('hover_image')->store('services', 'public');
         }
 
         $service->update($data);
 
-        return redirect()->route('all.services')->with([
+        $notification = array(
             'message'    => 'Service Updated Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return redirect()->route('all.services')->with($notification);
     }
 
     public function DeleteService($id)
@@ -160,9 +102,10 @@ class ServiceController extends Controller
 
         $service->delete();
 
-        return redirect()->route('all.services')->with([
+        $notification = array(
             'message'    => 'Service Deleted Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return redirect()->route('all.services')->with($notification);
     }
 }

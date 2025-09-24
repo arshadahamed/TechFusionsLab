@@ -193,13 +193,6 @@
         <script>
             document.addEventListener("DOMContentLoaded", function() {
 
-                const months = Array.from({
-                    length: 12
-                }, (_, i) => i + 1);
-
-                // --- Reviews Chart ---
-                const reviewData = @json(\App\Models\Review::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-                const reviewChartData = months.map(m => reviewData[m] || 0);
 
                 const reviewEl = document.querySelector("#review-stats-chart");
                 if (reviewEl) {
@@ -213,37 +206,11 @@
                         },
                         series: [{
                             name: 'Reviews',
-                            data: reviewChartData
-                        }],
-                        colors: ['#3b82f6'],
-                        plotOptions: {
-                            bar: {
-                                columnWidth: '50%'
-                            }
-                        },
-                        tooltip: {
-                            enabled: true
-                        },
-                        xaxis: {
-                            labels: {
-                                show: false
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            }
-                        },
-                        yaxis: {
-                            show: false
-                        }
+                            data: [10, 20, 30]
+                        }], // replace with your data
+                        colors: ['#3b82f6']
                     }).render();
                 }
-
-                // --- Emails Chart ---
-                const emailData = @json(\App\Models\Contact::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-                const emailChartData = months.map(m => emailData[m] || 0);
 
                 const emailEl = document.querySelector("#email-stats-chart");
                 if (emailEl) {
@@ -257,37 +224,11 @@
                         },
                         series: [{
                             name: 'Emails',
-                            data: emailChartData
-                        }],
-                        colors: ['#10b981'],
-                        plotOptions: {
-                            bar: {
-                                columnWidth: '50%'
-                            }
-                        },
-                        tooltip: {
-                            enabled: true
-                        },
-                        xaxis: {
-                            labels: {
-                                show: false
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            }
-                        },
-                        yaxis: {
-                            show: false
-                        }
+                            data: [5, 15, 25]
+                        }], // replace with your data
+                        colors: ['#10b981']
                     }).render();
                 }
-
-                // --- Team Members Chart ---
-                const teamData = @json(\App\Models\Team::selectRaw('MONTH(created_at) as month, COUNT(*) as count')->groupBy('month')->orderBy('month')->pluck('count', 'month'));
-                const teamChartData = months.map(m => teamData[m] || 0);
 
                 const teamEl = document.querySelector("#teammembers");
                 if (teamEl) {
@@ -301,34 +242,11 @@
                         },
                         series: [{
                             name: 'Team Members',
-                            data: teamChartData
-                        }],
-                        colors: ['#f59e0b'],
-                        plotOptions: {
-                            bar: {
-                                columnWidth: '50%'
-                            }
-                        },
-                        tooltip: {
-                            enabled: true
-                        },
-                        xaxis: {
-                            labels: {
-                                show: false
-                            },
-                            axisBorder: {
-                                show: false
-                            },
-                            axisTicks: {
-                                show: false
-                            }
-                        },
-                        yaxis: {
-                            show: false
-                        }
+                            data: [2, 8, 6]
+                        }], // replace with your data
+                        colors: ['#f59e0b']
                     }).render();
                 }
-
 
             });
         </script>

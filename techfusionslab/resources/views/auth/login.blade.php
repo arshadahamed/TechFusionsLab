@@ -11,7 +11,7 @@
 
         <!-- App favicon -->
          @if($company && $company->favicon)
-            <link rel="icon" type="image/png" href="{{ asset($company->favicon) }}">
+            <link rel="icon" type="image/png" href="{{ asset('storage/'.$company->favicon) }}">
         @endif
 
         <!-- App css -->
@@ -35,7 +35,7 @@
                                 <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
                                     <div class="mb-4 p-0">
                                         <a href="{{ route('home') }}" class="auth-logo">
-                                            <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
+                                            <img src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
                                                 alt="Dark Logo">
                                         </a>
                                     </div>
@@ -76,9 +76,8 @@
                                         <div class="saprator my-4"><span>or sign in with</span></div>
 
                                         <div class="text-center text-muted mb-4">
-                                            <p class="mb-0">Don't have an account ?<a class='text-primary ms-2 fw-medium' href='{{route('register')}}'>Sign Up</a></p>
+                                            <p class="mb-0">Don't have an account ?<a class='text-primary ms-2 fw-medium' href='{{route('login')}}'>Sign Up</a></p>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

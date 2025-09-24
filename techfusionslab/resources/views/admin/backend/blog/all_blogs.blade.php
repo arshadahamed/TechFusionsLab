@@ -80,9 +80,7 @@
                                             <td>{{ Str::limit($item->title, 30) }}</td>
                                             <td>
                                                 <div class="d-flex align-items-center">
-                                                    <img src="{{ !empty($item->author_image)
-                                                        ? url('storage/'.$item->author_image)
-                                                        : url('upload/no_image.jpg') }}"
+                                                    <img src="{{ $item->author_image ? asset('storage/'.$item->author_image) : asset('upload/no_image.jpg') }}"
                                                         alt="author"
                                                         class="rounded-circle me-2 shadow-sm"
                                                         width="35" height="35">
@@ -98,17 +96,13 @@
                                                 @endif
                                             </td>
                                             <td class="text-center">
-                                                @if($item->is_featured)
-                                                    <span class="badge bg-success">Yes</span>
-                                                @else
-                                                    <span class="badge bg-secondary">No</span>
-                                                @endif
+                                                <span class="badge {{ $item->is_featured ? 'bg-success' : 'bg-secondary' }}">
+                                                    {{ $item->is_featured ? 'Yes' : 'No' }}
+                                                </span>
                                             </td>
                                             <td>{{ $item->published_at ? \Carbon\Carbon::parse($item->published_at)->format('d M, Y') : '-' }}</td>
                                             <td>
-                                                <img src="{{ !empty($item->main_image)
-                                                    ? url('storage/'.$item->main_image)
-                                                    : url('upload/no_image.jpg') }}"
+                                                <img src="{{ $item->main_image ? asset('storage/'.$item->main_image) : asset('upload/no_image.jpg') }}"
                                                     alt="main image"
                                                     class="rounded shadow-sm"
                                                     width="60" height="40">

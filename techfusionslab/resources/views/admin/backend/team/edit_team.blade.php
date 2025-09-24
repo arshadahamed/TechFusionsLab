@@ -82,7 +82,7 @@
                             <div class="form-group mb-3">
                                 <label class="form-label">Image</label>
                                 <input class="form-control" type="file" name="image" id="image">
-                                <img id="showImage" src="{{ $team->image ? asset($team->image) : url('upload/no_image.jpg') }}" class="rounded avatar-xl img-thumbnail mt-2" alt="Team Image">
+                                <img id="showImage" src="{{ $team->image ? asset('storage/'.$team->image) : url('upload/no_image.jpg') }}" class="rounded avatar-xl img-thumbnail mt-2" alt="Team Image">
                             </div>
 
                             <button type="submit" class="btn btn-primary">Save Changes</button>

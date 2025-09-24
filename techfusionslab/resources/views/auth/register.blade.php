@@ -3,9 +3,9 @@
     <head>
 
         <meta charset="utf-8" />
-        <title>Register | TechFusionsLab </title>
+        <title>{{ $company->meta_title ?? $company->company_name ?? 'Register |  Pluto Consultancy' }} | Pluto Consultancy</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc."/>
+        <meta name="description" content="{{ $company->meta_description ?? 'Admin panel for managing site settings.' }}"/>
         <meta name="author" content="Arshad Ahamed"/>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
@@ -33,7 +33,7 @@
                                 <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
                                     <div class="mb-4 p-0">
                                         <a href="{{ route('home') }}" class="auth-logo">
-                                            <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
+                                            <img src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
                                                 alt="Dark Logo">
                                         </a>
                                     </div>

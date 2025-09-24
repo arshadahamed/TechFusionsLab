@@ -18,7 +18,7 @@
 
         <!-- Dynamic Favicon -->
         @if($company && $company->favicon)
-            <link rel="icon" type="image/png" href="{{ asset($company->favicon) }}">
+            <link rel="icon" type="image/png" href="{{ asset('storage/'.$company->favicon) }}">
         @endif
 
         <!-- Open Graph (FB/LinkedIn) -->
@@ -119,7 +119,7 @@
                         <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                             <div class="offcanvas__logo">
                                 <a href="{{ route('home') }}" >
-                                    <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
+                                    <img src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/logo/dark-logo.png') }}"
                                         alt="Dark Logo">
                                 </a>
                             </div>

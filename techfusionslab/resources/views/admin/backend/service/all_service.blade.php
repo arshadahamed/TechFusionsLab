@@ -47,10 +47,10 @@
                                             <td>{{ $services->firstItem() + $key }}</td>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ $item->number }}</td>
-                                            <td><img src="{{ asset($item->icon) }}" style="width:60px;height:60px;"></td>
+                                            <td><img src="{{  asset('storage/'.$item->icon) }}" style="width:60px;height:60px;"></td>
                                             <td>{{ Str::limit($item->description, 50, '...') }}</td>
                                             <td>{{ $item->link }}</td>
-                                            <td><img src="{{ asset($item->hover_image) }}" style="width:60px;height:60px;"></td>
+                                            <td><img src="{{  asset('storage/'.$item->hover_image) }}" style="width:60px;height:60px;"></td>
                                             <td>
                                                 <a href="{{ route('edit.service', $item->id) }}" class="btn btn-success btn-sm">Edit</a>
                                                 <a href="{{ route('delete.service', $item->id) }}" class="btn btn-danger btn-sm" id="delete">Delete</a>

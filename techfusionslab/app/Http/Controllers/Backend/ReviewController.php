@@ -5,8 +5,6 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Review;
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
@@ -22,30 +20,26 @@ class ReviewController extends Controller
 
     public function StoreReview(Request $request)
     {
-        $path = null;
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'message'  => 'required|string',
+            'image'    => 'nullable|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        ]);
+
+        $data = $request->only(['name', 'position', 'message']);
 
         if ($request->hasFile('image')) {
-            $manager = new ImageManager(new Driver());
-            $image   = $manager->read($request->file('image'));
-            $image->resize(61, 60);
-
-            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $path = "upload/review/$filename"; // Changed path
-
-            Storage::disk('public')->put($path, (string) $image->encode());
+            $data['image'] = $request->file('image')->store('upload/review', 'public');
         }
 
-        Review::create([
-            'name'     => $request->name,
-            'position' => $request->position,
-            'message'  => $request->message,
-            'image'    => $path,
-        ]);
+        Review::create($data);
 
-        return redirect()->route('all.review')->with([
+        $notification = array(
             'message'    => 'Review Inserted Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return redirect()->route('reviews.index')->with($notification);
     }
 
     public function EditReview($id) {
@@ -53,39 +47,36 @@ class ReviewController extends Controller
         return view('admin.backend.review.edit_review', compact('review'));
     }
 
-    public function UpdateReview(Request $request)
+    public function UpdateReview(Request $request, $id)
     {
-        $review = Review::findOrFail($request->id);
-        $path   = $review->image;
+        $request->validate([
+            'name'     => 'required|string|max:255',
+            'position' => 'required|string|max:255',
+            'message'  => 'required|string',
+            'image'    => 'nullable|image|mimes:jpg,jpeg,png,svg,gif|max:2048',
+        ]);
+
+        $review = Review::findOrFail($id);
+        $data   = $request->only(['name', 'position', 'message']);
 
         if ($request->hasFile('image')) {
             if ($review->image && Storage::disk('public')->exists($review->image)) {
                 Storage::disk('public')->delete($review->image);
             }
 
-            $manager = new ImageManager(new Driver());
-            $image   = $manager->read($request->file('image'));
-            $image->resize(61, 60);
-
-            $filename = uniqid().'.'.$request->file('image')->getClientOriginalExtension();
-            $path = "upload/review/$filename"; // Changed path
-
-            Storage::disk('public')->put($path, (string) $image->encode());
+            $data['image'] = $request->file('image')->store('upload/review', 'public');
         }
 
-        $review->update([
-            'name'     => $request->name,
-            'position' => $request->position,
-            'message'  => $request->message,
-            'image'    => $path,
-        ]);
+        $review->update($data);
 
-        return redirect()->route('all.review')->with([
+        $notification = array(
             'message'    => $request->hasFile('image')
                 ? 'Review Updated With Image Successfully'
                 : 'Review Updated Without Image Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+
+        return redirect()->route('all.review')->with($notification);
     }
 
     public function DeleteReview($id)
@@ -98,10 +89,11 @@ class ReviewController extends Controller
 
         $review->delete();
 
-        return redirect()->back()->with([
+        $notification = array(
             'message'    => 'Review Deleted Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return redirect()->back()->with($notification);
     }
 
     public function DeleteReviewAjax($id)
@@ -114,9 +106,10 @@ class ReviewController extends Controller
 
         $review->delete();
 
-        return response()->json([
+        $notification = array(
             'message'    => 'Review Deleted Successfully',
             'alert-type' => 'success'
-        ]);
+        );
+        return response()->json($notification);
     }
 }

@@ -36,7 +36,7 @@
                                     <td>{{ $review->firstItem() + $key }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->position }}</td>
-                                    <td><img src="{{ asset($item->image) }}" style="width: 61px; height:60px;"></td>
+                                    <td><img src="{{  asset('storage/' .$item->image) }}" style="width: 61px; height:60px;"></td>
                                     <td>{{ Str::limit($item->message, 50, '...') }}</td>
                                     <td>
                                         <a href="{{ route('edit.review', $item->id) }}" class="btn btn-success btn-sm">Edit</a>

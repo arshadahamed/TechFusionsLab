@@ -45,7 +45,7 @@
                                     <td>{{ $team->email }}</td>
                                     <td>{{ $team->phone }}</td>
                                     <td>
-                                        <img src="{{ $team->image ? asset($team->image) : url('upload/no_image.jpg') }}" alt="Team Image" class="rounded-circle" style="width:50px; height:50px;">
+                                        <img src="{{ $team->image ? asset('storage/'.$team->image) : url('upload/no_image.jpg') }}" alt="Team Image" class="rounded-circle" style="width:50px; height:50px;">
                                     </td>
                                     <td>
                                         @if($team->facebook)

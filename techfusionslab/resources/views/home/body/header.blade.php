@@ -7,11 +7,11 @@
                 <div class="header-left">
                     <div class="logo">
                         <a href="{{ route('home') }}" class="header-logo">
-                            <img src="{{ $company->white_logo ? asset($company->white_logo) : asset('frontend/assets/img/logo/white-logo.png') }}"
+                            <img src="{{ $company->white_logo ? asset('storage/'.$company->white_logo) : asset('frontend/assets/img/logo/white-logo.png') }}"
                                 alt="White Logo">
                         </a>
                         <a href="{{ route('home') }}" class="header-logo-2">
-                            <img src="{{ $company->dark_logo ? asset($company->dark_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
+                            <img src="{{ $company->dark_logo ? asset('storage/'.$company->dark_logo) : asset('frontend/assets/img/logo/black-logo.png') }}"
                                 alt="Dark Logo">
                         </a>
                     </div>

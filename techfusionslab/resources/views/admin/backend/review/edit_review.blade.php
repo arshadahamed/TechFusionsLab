@@ -73,7 +73,7 @@
                                                         <div class="form-group mb-3 row">
                                                             <label class="form-label"> </label>
                                                             <div class="col-lg-12 col-xl-12">
-                                                                <img id="showImage" src="{{ asset($review->image) }}"
+                                                                <img id="showImage" src="{{ asset('storage/' .$review->image) }}"
                                                                     class="rounded-circle avatar-xxl img-thumbnail float-start"
                                                                     alt="image profile">
 

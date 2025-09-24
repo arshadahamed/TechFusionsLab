@@ -236,7 +236,7 @@
                         <div class="gt-team-card-items-3 wow img-custom-anim" data-wow-duration="1.3s"
                             data-wow-delay="0.3s">
                             <div class="gt-team-image">
-                                <img src="{{ asset($team->image ?? 'frontend/assets/img/home-3/team/default.jpg') }}"
+                                <img src="{{ asset('storage/'.$team->image ?? 'frontend/assets/img/home-3/team/default.jpg') }}"
                                     alt="{{ $team->name }}">
                             </div>
                             <div class="gt-team-content">
@@ -305,7 +305,7 @@
                                                 <p>"{{ $item->message }}"</p>
                                                 <div class="gt-client-item">
                                                     <div class="client-image">
-                                                        <img src="{{ $item->image ? asset('storage/' . $item->image) : asset('frontend/assets/img/home-1/testimonial/default-client.png') }}"
+                                                        <img src="{{ $item->image ? asset('storage/'. $item->image) : asset('frontend/assets/img/home-1/testimonial/default-client.png') }}"
                                                             alt="{{ $item->name }}">
                                                     </div>
                                                     <div class="cont">

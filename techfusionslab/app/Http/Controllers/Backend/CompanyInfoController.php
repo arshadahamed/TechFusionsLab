@@ -8,7 +8,6 @@ use App\Models\CompanyInfo;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
-
 class CompanyInfoController extends Controller
 {
     // Show Edit Form
@@ -53,41 +52,10 @@ class CompanyInfoController extends Controller
             'tiktok'           => 'nullable|string|max:255',
         ]);
 
-        // Create folder if not exists
-        $uploadPath = public_path('upload/logo');
-        if (!File::exists($uploadPath)) {
-            File::makeDirectory($uploadPath, 0755, true);
-        }
-
-        // White Logo
-        if ($request->hasFile('white_logo')) {
-            if ($company->white_logo && Storage::exists($company->white_logo)) {
-                Storage::delete($company->white_logo);
-            }
-            $whiteName = time().'_white.'.$request->white_logo->getClientOriginalExtension();
-            $path = $request->file('white_logo')->storeAs('public/upload/logo', $whiteName);
-            $data['white_logo'] = str_replace('public/', 'storage/', $path); // For public URL
-        }
-
-        // Dark Logo
-        if ($request->hasFile('dark_logo')) {
-            if ($company->dark_logo && Storage::exists($company->dark_logo)) {
-                Storage::delete($company->dark_logo);
-            }
-            $darkName = time().'_dark.'.$request->dark_logo->getClientOriginalExtension();
-            $path = $request->file('dark_logo')->storeAs('public/upload/logo', $darkName);
-            $data['dark_logo'] = str_replace('public/', 'storage/', $path);
-        }
-
-        // Favicon
-        if ($request->hasFile('favicon')) {
-            if ($company->favicon && Storage::exists($company->favicon)) {
-                Storage::delete($company->favicon);
-            }
-            $faviconName = time().'_favicon.'.$request->favicon->getClientOriginalExtension();
-            $path = $request->file('favicon')->storeAs('public/upload/logo', $faviconName);
-            $data['favicon'] = str_replace('public/', 'storage/', $path);
-        }
+        // Handle logo uploads
+        $data['white_logo'] = $this->uploadFile($request, 'white_logo', $company->white_logo);
+        $data['dark_logo']  = $this->uploadFile($request, 'dark_logo', $company->dark_logo);
+        $data['favicon']    = $this->uploadFile($request, 'favicon', $company->favicon);
 
         $data['slug'] = Str::slug($request->company_name, '-');
 
@@ -95,6 +63,42 @@ class CompanyInfoController extends Controller
 
         return redirect()->route('edit.info')->with([
             'message' => 'Company information updated successfully!',
+            'alert-type' => 'success'
+        ]);
+    }
+
+    // ✅ Helper to handle upload + delete old file
+    private function uploadFile(Request $request, string $field, ?string $oldFile = null): ?string
+    {
+        if ($request->hasFile($field)) {
+            // Delete old file if exists
+            if ($oldFile && Storage::disk('public')->exists($oldFile)) {
+                Storage::disk('public')->delete($oldFile);
+            }
+
+            // Store new file inside "storage/app/public/company"
+            return $request->file($field)->store('company', 'public');
+        }
+
+        return $oldFile; // keep old file if no new upload
+    }
+
+    // ✅ Destroy Company with image cleanup
+    public function destroyCompany($id)
+    {
+        $company = CompanyInfo::findOrFail($id);
+
+        // Delete images if exist
+        foreach (['white_logo', 'dark_logo', 'favicon'] as $field) {
+            if ($company->$field && Storage::disk('public')->exists($company->$field)) {
+                Storage::disk('public')->delete($company->$field);
+            }
+        }
+
+        $company->delete();
+
+        return redirect()->route('edit.info')->with([
+            'message'    => 'Company information deleted successfully!',
             'alert-type' => 'success'
         ]);
     }

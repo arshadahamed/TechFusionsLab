@@ -24,7 +24,7 @@
                         <div class="swiper-slide">
                             <div class="gt-team-card-items">
                                 <div class="gt-team-image">
-                                    <img src="{{ asset($team->image ?? 'frontend/assets/img/home-1/team/default.jpg') }}" alt="img">
+                                    <img src="{{ asset('storage/'.$team->image ?? 'frontend/assets/img/home-1/team/default.jpg') }}" alt="img">
                                     <div class="gt-team-content">
                                         <h4>
                                             <a href="{{route('our.team')}}">{{ $team->name }}</a>
